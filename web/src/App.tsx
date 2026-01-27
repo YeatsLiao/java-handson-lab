@@ -11,6 +11,9 @@ import { FlowControl } from './pages/labs/FlowControl';
 import { Polymorphism } from './pages/labs/Polymorphism';
 import { Interfaces } from './pages/labs/Interfaces';
 import { StaticMembers } from './pages/labs/StaticMembers';
+import { ArrayListLab } from './pages/labs/ArrayList';
+import { LinkedListLab } from './pages/labs/LinkedList';
+import { HashMapLab } from './pages/labs/HashMap';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +55,18 @@ const router = createBrowserRouter([
       {
         path: 'labs/static-members',
         element: <StaticMembers />,
+      },
+      {
+        path: 'labs/arraylist',
+        element: <ArrayListLab />,
+      },
+      {
+        path: 'labs/linkedlist',
+        element: <LinkedListLab />,
+      },
+      {
+        path: 'labs/hashmap',
+        element: <HashMapLab />,
       },
       {
         path: 'labs/:labId',
