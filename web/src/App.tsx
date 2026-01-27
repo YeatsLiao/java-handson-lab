@@ -14,6 +14,10 @@ import { StaticMembers } from './pages/labs/StaticMembers';
 import { ArrayListLab } from './pages/labs/ArrayList';
 import { LinkedListLab } from './pages/labs/LinkedList';
 import { HashMapLab } from './pages/labs/HashMap';
+import { ExceptionsLab } from './pages/labs/Exceptions';
+import { ThreadsLab } from './pages/labs/Threads';
+import { LocksLab } from './pages/labs/Locks';
+import { GCLab } from './pages/labs/GC';
 
 const router = createBrowserRouter([
   {
@@ -67,6 +71,22 @@ const router = createBrowserRouter([
       {
         path: 'labs/hashmap',
         element: <HashMapLab />,
+      },
+      {
+        path: 'labs/exceptions',
+        element: <ExceptionsLab />,
+      },
+      {
+        path: 'labs/threads',
+        element: <ThreadsLab />,
+      },
+      {
+        path: 'labs/locks',
+        element: <LocksLab />,
+      },
+      {
+        path: 'labs/gc',
+        element: <GCLab />,
       },
       {
         path: 'labs/:labId',

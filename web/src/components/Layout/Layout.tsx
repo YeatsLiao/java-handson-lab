@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { 
   Menu, X, Home, Box, Cpu, Share2, 
   Layers, Database, Zap, Repeat, 
-  GitBranch, Code
+  GitBranch, Code, Moon, Globe, Github
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
@@ -116,8 +116,25 @@ export const Layout: React.FC = () => {
             ))}
           </div>
 
-          <div className="p-4 border-t border-gray-100 text-center">
-            <p className="text-xs text-gray-400">
+          <div className="p-4 border-t border-gray-100">
+            <div className="flex justify-center gap-4 mb-4">
+               <button className="p-2 text-gray-500 hover:text-blue-600 hover:bg-gray-100 rounded-full transition-colors" title="切换主题">
+                 <Moon size={18} />
+               </button>
+               <button className="p-2 text-gray-500 hover:text-blue-600 hover:bg-gray-100 rounded-full transition-colors" title="切换语言">
+                 <Globe size={18} />
+               </button>
+               <a 
+                 href="https://github.com/YeatsLiao/java-handson-lab" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 className="p-2 text-gray-500 hover:text-blue-600 hover:bg-gray-100 rounded-full transition-colors"
+                 title="GitHub 源码"
+               >
+                 <Github size={18} />
+               </a>
+            </div>
+            <p className="text-xs text-center text-gray-400">
               v1.0.0 | Built with React
             </p>
           </div>

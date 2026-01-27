@@ -66,13 +66,63 @@ export const Home: React.FC = () => {
 
       {/* Quick Start Links */}
       <div className="border-t border-gray-100 pt-12">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">探索实验模块</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <QuickLink to="/labs/primitive-types" label="基础数据类型" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-          <QuickLink to="/labs/references" label="引用与对象" color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
-          <QuickLink to="/labs/stack" label="方法调用栈" color="bg-purple-50 text-purple-700 hover:bg-purple-100" />
-          <QuickLink to="/labs/string-pool" label="字符串常量池" color="bg-pink-50 text-pink-700 hover:bg-pink-100" />
-          <QuickLink to="/labs/flow-control" label="流程控制" color="bg-yellow-50 text-yellow-700 hover:bg-yellow-100" />
+        <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">探索实验模块</h2>
+        
+        <div className="space-y-10">
+          {/* 阶段一：基础 */}
+          <section>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-1 h-6 bg-blue-500 rounded-full"></span>
+              <h3 className="text-xl font-bold text-gray-700">Java 基础</h3>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <QuickLink to="/labs/primitive-types" label="基础数据类型" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/references" label="引用与对象" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/stack" label="方法调用栈" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/string-pool" label="字符串常量池" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/flow-control" label="流程控制" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+            </div>
+          </section>
+
+          {/* 阶段二：面向对象 */}
+          <section>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-1 h-6 bg-indigo-500 rounded-full"></span>
+              <h3 className="text-xl font-bold text-gray-700">面向对象 (OOP)</h3>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <QuickLink to="/labs/polymorphism" label="继承与多态" color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
+              <QuickLink to="/labs/interfaces" label="接口与实现" color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
+              <QuickLink to="/labs/static-members" label="静态成员" color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
+            </div>
+          </section>
+
+          {/* 阶段三：集合框架 */}
+          <section>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-1 h-6 bg-emerald-500 rounded-full"></span>
+              <h3 className="text-xl font-bold text-gray-700">集合框架</h3>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <QuickLink to="/labs/arraylist" label="ArrayList 扩容" color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
+              <QuickLink to="/labs/linkedlist" label="LinkedList 链表" color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
+              <QuickLink to="/labs/hashmap" label="HashMap 原理" color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
+            </div>
+          </section>
+
+          {/* 阶段四：进阶与并发 */}
+          <section>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-1 h-6 bg-orange-500 rounded-full"></span>
+              <h3 className="text-xl font-bold text-gray-700">进阶与并发</h3>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <QuickLink to="/labs/exceptions" label="异常处理" color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
+              <QuickLink to="/labs/threads" label="多线程状态" color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
+              <QuickLink to="/labs/locks" label="锁与线程安全" color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
+              <QuickLink to="/labs/gc" label="GC 垃圾回收" color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
+            </div>
+          </section>
         </div>
       </div>
     </div>
