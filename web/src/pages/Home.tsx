@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="flex justify-center gap-4"
+          className="flex flex-wrap justify-center gap-4"
         >
           <Link 
             to="/labs/primitive-types" 
@@ -46,7 +46,7 @@ export const Home: React.FC = () => {
       </div>
 
       {/* Features Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto px-4">
         <FeatureCard 
           icon={<Layers className="text-purple-500" size={32} />}
           title="内存模型可视化"

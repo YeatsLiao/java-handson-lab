@@ -51,7 +51,7 @@ export const Demo: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-6 p-6">
-      <div className="flex gap-4 items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+      <div className="flex flex-wrap gap-4 items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
         <button
           onClick={createInstance}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-md active:transform active:scale-95"

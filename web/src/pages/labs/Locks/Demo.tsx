@@ -83,8 +83,8 @@ export const Demo: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full space-y-6">
-      <div className="flex items-center gap-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col md:flex-row items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div className="flex items-center gap-2 w-full md:w-auto">
           <label className="text-sm font-bold text-gray-700">模式:</label>
           <button
             onClick={() => { setIsLocked(!isLocked); reset(); }}
@@ -103,7 +103,7 @@ export const Demo: React.FC = () => {
         <button
           onClick={runSimulation}
           disabled={isRunning}
-          className="ml-auto flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50"
+          className="md:ml-auto w-full md:w-auto mt-2 md:mt-0 flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50"
         >
           {isRunning ? <RefreshCw className="animate-spin" size={18} /> : <Play size={18} />}
           Start Simulation (2 Threads x 10 Inc)
@@ -111,7 +111,7 @@ export const Demo: React.FC = () => {
       </div>
 
       {/* Visualization */}
-      <div className="flex-1 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col items-center justify-center relative">
+      <div className="flex-1 bg-white p-4 md:p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col items-center justify-center relative">
         
         {/* Shared Resource */}
         <div className="mb-12 relative">
@@ -129,7 +129,7 @@ export const Demo: React.FC = () => {
         </div>
 
         {/* Threads */}
-        <div className="flex gap-20 w-full justify-center">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-20 w-full justify-center items-center">
           {/* Thread 1 */}
           <motion.div 
             className={`p-6 rounded-lg border-2 flex flex-col items-center w-40 transition-colors ${activeThread === 'T1' ? 'bg-blue-50 border-blue-500 shadow-lg' : 'bg-white border-gray-200 opacity-50'}`}

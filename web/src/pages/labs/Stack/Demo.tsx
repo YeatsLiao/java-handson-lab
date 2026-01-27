@@ -157,19 +157,19 @@ export const Demo: React.FC = () => {
         </button>
       </div>
 
-      <div className="flex-1 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 p-8 flex flex-col-reverse items-center gap-2 overflow-y-auto min-h-[400px] relative">
+      <div className="flex-1 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 p-4 md:p-8 flex flex-col-reverse items-center gap-2 overflow-y-auto min-h-[400px] relative">
         <div className="w-full text-center text-gray-300 font-mono text-sm border-t border-gray-200 pt-2">Stack Bottom</div>
         
           {frames.map((frame, index) => (
             <div
               key={frame.id}
-              className={`w-64 p-4 rounded-lg border-2 shadow-sm transition-all duration-300 relative animate-in slide-in-from-bottom-4`}
+              className={`w-full max-w-[16rem] md:w-64 p-4 rounded-lg border-2 shadow-sm transition-all duration-300 relative animate-in slide-in-from-bottom-4`}
               style={{
                 borderColor: frame.status === 'active' ? '#3B82F6' : '#E5E7EB',
                 backgroundColor: frame.status === 'returning' ? '#ECFDF5' : (frame.status === 'active' ? '#EFF6FF' : '#F9FAFB')
               }}
             >
-              <div className="absolute -left-12 top-1/2 -translate-y-1/2 text-xs font-mono text-gray-400">
+              <div className="mb-1 md:absolute md:-left-12 md:top-1/2 md:-translate-y-1/2 text-xs font-mono text-gray-400 md:mb-0">
                 Frame #{frames.length - index}
               </div>
               

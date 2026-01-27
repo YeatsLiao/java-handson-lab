@@ -140,7 +140,7 @@ export const Demo: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full space-y-6">
-      <div className="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+      <div className="flex flex-wrap gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
         <button onClick={allocate} className="btn-primary bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded flex items-center gap-2">
           <Plus size={18} /> Allocate Object
         </button>
@@ -158,7 +158,7 @@ export const Demo: React.FC = () => {
         {/* Young Gen */}
         <div className="flex flex-col gap-2">
            <div className="text-xs font-bold uppercase text-gray-400">Young Generation</div>
-           <div className="flex gap-4">
+           <div className="flex flex-col md:flex-row gap-4">
               {renderZone('Eden Space', 'Eden', EDEN_LIMIT, 'bg-green-50 border-green-200')}
               {renderZone('Survivor 0', 'S0', SURVIVOR_LIMIT, survivorTo === 'S1' ? 'bg-green-50 border-green-200' : 'bg-gray-100 border-gray-200 opacity-60')}
               {renderZone('Survivor 1', 'S1', SURVIVOR_LIMIT, survivorTo === 'S0' ? 'bg-green-50 border-green-200' : 'bg-gray-100 border-gray-200 opacity-60')}
@@ -168,7 +168,7 @@ export const Demo: React.FC = () => {
         {/* Old Gen */}
         <div className="flex flex-col gap-2 flex-1">
            <div className="text-xs font-bold uppercase text-gray-400">Old Generation</div>
-           <div className="flex gap-4 h-full">
+           <div className="flex flex-col md:flex-row gap-4 h-full">
               {renderZone('Tenured Space', 'Old', 20, 'bg-blue-50 border-blue-200')}
            </div>
         </div>

@@ -149,7 +149,7 @@ export const Demo: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 flex-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
         {/* Code View */}
         <div className="bg-[#1E1E1E] rounded-xl p-6 font-mono text-sm text-gray-300 relative overflow-hidden shadow-lg border border-gray-800">
            <div className="absolute top-0 left-0 w-full h-8 bg-[#252526] flex items-center px-4 text-xs text-gray-500 border-b border-gray-700">

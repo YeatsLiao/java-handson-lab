@@ -146,7 +146,7 @@ export const Demo: React.FC = () => {
       </div>
 
       <Xwrapper>
-        <div className="flex-1 grid grid-cols-2 gap-8 min-h-[400px]">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[400px]">
           {/* Stack Area */}
           <div className="col-span-1 bg-gray-50 rounded-2xl border border-gray-200 p-6 flex flex-col relative">
              <div className="absolute top-4 left-4 text-xs font-bold text-gray-400 tracking-widest">STACK</div>

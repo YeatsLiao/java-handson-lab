@@ -70,31 +70,33 @@ export const Demo: React.FC = () => {
             </select>
           </div>
           
-          <div className="flex flex-col gap-1">
-            <label className="text-xs text-gray-400">Name</label>
-            <input 
-              type="text" 
-              value={varName}
-              onChange={(e) => setVarName(e.target.value)}
-              className="w-20 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
-              placeholder="x"
-            />
+          <div className="flex items-end gap-2 flex-wrap">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-gray-400">Name</label>
+              <input 
+                type="text" 
+                value={varName}
+                onChange={(e) => setVarName(e.target.value)}
+                className="w-20 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
+                placeholder="x"
+              />
+            </div>
+
+            <div className="pb-3 text-gray-400 font-bold">=</div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-gray-400">Value</label>
+              <input 
+                type="text" 
+                value={varValue}
+                onChange={(e) => setVarValue(e.target.value)}
+                className="w-24 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
+                placeholder="10"
+              />
+            </div>
+
+            <div className="pb-3 text-gray-400 font-bold">;</div>
           </div>
-
-          <div className="pb-2 text-gray-400 font-bold">=</div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-xs text-gray-400">Value</label>
-            <input 
-              type="text" 
-              value={varValue}
-              onChange={(e) => setVarValue(e.target.value)}
-              className="w-24 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
-              placeholder="10"
-            />
-          </div>
-
-          <div className="pb-2 text-gray-400 font-bold">;</div>
 
           <button 
             onClick={addVariable}

@@ -150,7 +150,7 @@ export const Demo: React.FC = () => {
       </div>
 
       <Xwrapper>
-        <div className="flex-1 grid grid-cols-3 gap-6 min-h-[400px]">
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-[400px]">
           
           {/* Stack */}
           <div className="col-span-1 bg-gray-50 rounded-xl border border-gray-200 p-4 relative flex flex-col">

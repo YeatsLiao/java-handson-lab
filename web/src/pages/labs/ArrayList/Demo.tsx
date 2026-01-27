@@ -41,7 +41,7 @@ export const Demo: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full space-y-6">
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <button
           onClick={addElement}
           disabled={isResizing}

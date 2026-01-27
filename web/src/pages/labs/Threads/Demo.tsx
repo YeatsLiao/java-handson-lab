@@ -112,7 +112,7 @@ export const Demo: React.FC = () => {
       </div>
 
       {/* Visualization */}
-      <div className="flex-1 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex items-center justify-center relative">
+      <div className="flex-1 bg-white p-4 md:p-8 rounded-xl border border-gray-200 shadow-sm flex items-center justify-center relative">
         <div className="relative w-full max-w-2xl h-80">
           
           {/* Central State Display */}
@@ -130,7 +130,7 @@ export const Demo: React.FC = () => {
 
           {/* Background Connections (Simplified for visual effect) */}
           <svg className="absolute inset-0 w-full h-full text-gray-200 pointer-events-none" style={{ zIndex: 0 }}>
-             <circle cx="50%" cy="50%" r="140" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
+             <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
           </svg>
 
         </div>

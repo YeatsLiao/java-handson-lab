@@ -22,7 +22,7 @@ export const LabLayout: React.FC<LabLayoutProps> = ({
 
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-0">
         {/* Left: Guide Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-y-auto flex flex-col">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-y-auto flex flex-col h-[500px] lg:h-full">
           <div className="p-4 border-b border-gray-100 bg-gray-50/50 sticky top-0 z-10 backdrop-blur-sm">
             <h2 className="font-semibold text-gray-700 flex items-center gap-2">
               📖 知识点讲解
@@ -34,13 +34,13 @@ export const LabLayout: React.FC<LabLayoutProps> = ({
         </div>
 
         {/* Right: Demo Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-[600px] lg:h-full order-first lg:order-last">
           <div className="p-4 border-b border-gray-100 bg-gray-50/50 sticky top-0 z-10 backdrop-blur-sm flex justify-between items-center">
             <h2 className="font-semibold text-gray-700 flex items-center gap-2">
               🧪 交互实验室
             </h2>
           </div>
-          <div className="flex-1 overflow-y-auto p-6 bg-slate-50 relative">
+          <div className="flex-1 overflow-y-auto p-3 md:p-6 bg-slate-50 relative">
             {demo}
           </div>
         </div>

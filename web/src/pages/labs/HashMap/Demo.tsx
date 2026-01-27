@@ -67,7 +67,7 @@ export const Demo: React.FC = () => {
   return (
     <div className="flex flex-col h-full space-y-6">
       {/* Input Area */}
-      <div className="flex gap-4 items-end bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <div className="flex flex-wrap gap-4 items-end bg-gray-50 p-4 rounded-lg border border-gray-200">
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Key</label>
           <input

@@ -1,161 +1,149 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Keyboard, Mouse, Printer, Laptop, RefreshCw } from 'lucide-react';
-
-type DeviceType = 'keyboard' | 'mouse' | 'printer' | null;
+import { Laptop, Usb, Keyboard, Mouse, Printer, Power, ArrowDown, Terminal } from 'lucide-react';
 
 export const Demo: React.FC = () => {
-  const [device, setDevice] = useState<DeviceType>(null);
-  const [logs, setLogs] = useState<string[]>([]);
-  const [activeCode, setActiveCode] = useState<string | null>(null);
+  const [device, setDevice] = useState<string | null>(null);
+  const [logs, setLogs] = useState<string[]>(['System ready. Waiting for device...']);
 
-  const connectDevice = (type: DeviceType) => {
-    if (device === type) return;
+  const connect = (type: string) => {
     setDevice(type);
-    setLogs(prev => [...prev, `> USB device = new ${type?.charAt(0).toUpperCase()}${type?.slice(1)}();`, `> computer.connect(device);`]);
-    setActiveCode('connect');
-    
-    setTimeout(() => {
-      setActiveCode('work');
-      let workLog = "";
-      switch (type) {
-        case 'keyboard': workLog = "Type: Hello World"; break;
-        case 'mouse': workLog = "Click: (x: 100, y: 200)"; break;
-        case 'printer': workLog = "Print: Document.pdf"; break;
-      }
-      setLogs(prev => [...prev, `> device.work(); // ${workLog}`]);
-      setTimeout(() => setActiveCode(null), 1000);
-    }, 1000);
+    setLogs(prev => [...prev, `> Connecting ${type}...`, `> ${type} driver loaded.`, `> ${type} is ready.`]);
   };
 
-  const reset = () => {
-    setDevice(null);
-    setLogs([]);
-    setActiveCode(null);
+  const disconnect = () => {
+    if (device) {
+      setLogs(prev => [...prev, `> Disconnecting ${device}...`, '> Device removed.']);
+      setDevice(null);
+    }
+  };
+
+  const DeviceIcon = ({ type, size = 24 }: { type: string, size?: number }) => {
+    switch (type) {
+      case 'keyboard': return <Keyboard size={size} />;
+      case 'mouse': return <Mouse size={size} />;
+      case 'printer': return <Printer size={size} />;
+      default: return <Usb size={size} />;
+    }
   };
 
   return (
-    <div className="flex flex-col gap-6 p-6">
-      <div className="flex gap-4 items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
-        <button
-          onClick={() => connectDevice('keyboard')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors font-medium ${device === 'keyboard' ? 'bg-blue-100 text-blue-700 ring-2 ring-blue-500' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-        >
-          <Keyboard size={18} /> Keyboard
-        </button>
-        <button
-          onClick={() => connectDevice('mouse')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors font-medium ${device === 'mouse' ? 'bg-blue-100 text-blue-700 ring-2 ring-blue-500' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-        >
-          <Mouse size={18} /> Mouse
-        </button>
-        <button
-          onClick={() => connectDevice('printer')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors font-medium ${device === 'printer' ? 'bg-blue-100 text-blue-700 ring-2 ring-blue-500' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-        >
-          <Printer size={18} /> Printer
-        </button>
+    <div className="flex flex-col h-full bg-slate-50 overflow-y-auto">
+      {/* 1. Control Panel (Sticky Top) */}
+      <div className="sticky top-0 z-10 bg-white border-b border-slate-200 shadow-sm p-3">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="font-bold text-slate-700 text-sm">USB PnP Lab</h3>
+          <button 
+            onClick={disconnect}
+            disabled={!device}
+            className={`px-3 py-1 rounded text-xs font-bold flex items-center gap-1 transition-colors
+              ${device ? 'bg-red-100 text-red-600 border border-red-200' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}
+            `}
+          >
+            <Power size={14} /> Eject
+          </button>
+        </div>
         
-        <button
-          onClick={reset}
-          className="ml-auto p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors"
-          title="Disconnect All"
-        >
-          <RefreshCw size={20} />
-        </button>
+        <div className="grid grid-cols-3 gap-2">
+          {['keyboard', 'mouse', 'printer'].map(type => (
+            <button
+              key={type}
+              onClick={() => connect(type)}
+              className={`
+                flex flex-col items-center justify-center gap-1 p-2 rounded-lg border-2 transition-all
+                ${device === type 
+                  ? 'bg-blue-50 border-blue-500 text-blue-700 shadow-sm' 
+                  : 'bg-white border-slate-200 text-slate-600 hover:border-blue-300'}
+              `}
+            >
+              <DeviceIcon type={type} size={20} />
+              <span className="text-[10px] uppercase font-bold tracking-wider">{type}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Visualization Area */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 min-h-[300px] flex flex-col items-center justify-center relative overflow-hidden">
-          
-          <div className="flex items-center gap-8">
-            {/* Computer */}
-            <div className="flex flex-col items-center z-10">
-              <Laptop size={64} className="text-gray-700" />
-              <span className="mt-2 font-mono text-sm bg-gray-100 px-2 py-1 rounded">Computer</span>
-            </div>
-
-            {/* USB Cable */}
-            <div className="w-16 h-2 bg-gray-300 rounded relative">
-               <AnimatePresence>
-                 {device && (
-                   <motion.div 
-                     initial={{ width: 0, opacity: 0 }}
-                     animate={{ width: "100%", opacity: 1 }}
-                     exit={{ width: 0, opacity: 0 }}
-                     className="absolute inset-0 bg-blue-500 rounded"
-                   />
-                 )}
-               </AnimatePresence>
-            </div>
-
-            {/* Device */}
-            <div className="w-24 h-24 flex items-center justify-center relative">
-              <AnimatePresence mode="wait">
-                {device ? (
-                  <motion.div
-                    key={device}
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: 50, opacity: 0 }}
-                    className="flex flex-col items-center"
-                  >
-                    <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 border-2 border-blue-200">
-                      {device === 'keyboard' && <Keyboard size={32} />}
-                      {device === 'mouse' && <Mouse size={32} />}
-                      {device === 'printer' && <Printer size={32} />}
-                    </div>
-                    <span className="mt-2 text-xs font-mono text-gray-500 capitalize">{device}</span>
-                  </motion.div>
-                ) : (
-                  <div className="w-16 h-16 border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-300">
-                    USB
-                  </div>
-                )}
-              </AnimatePresence>
-            </div>
+      {/* 2. Visual Flow (Natural Stack) */}
+      <div className="flex-1 p-4 flex flex-col items-center gap-4">
+        
+        {/* Computer Block */}
+        <div className="w-full bg-slate-800 text-slate-200 rounded-xl p-4 shadow-md flex items-center gap-4">
+          <div className="p-3 bg-slate-700 rounded-lg">
+            <Laptop size={24} className="text-blue-400" />
           </div>
-
+          <div className="flex-1 min-w-0">
+            <div className="text-xs font-mono text-slate-400">Host System</div>
+            <div className="font-bold truncate">MyComputer</div>
+          </div>
+          <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
         </div>
 
-        {/* Code & Console Area */}
-        <div className="flex flex-col gap-4">
-          {/* Code Preview */}
-          <div className="bg-gray-900 rounded-xl shadow-lg p-4 font-mono text-sm overflow-hidden">
-            <div className="flex gap-1.5 mb-3">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            </div>
-            <div className="space-y-1 text-gray-300">
-              <div className="text-gray-500">// Interface Polymorphism</div>
-              <div><span className="text-purple-400">interface</span> USB &#123; <span className="text-purple-400">void</span> work(); &#125;</div>
-              <br/>
-              <div><span className="text-purple-400">void</span> connect(USB device) &#123;</div>
-              <div className={`${activeCode === 'work' ? 'bg-blue-500/30 -mx-4 px-4 py-1' : ''} transition-colors duration-300 pl-4`}>
-                device.<span className="text-blue-300">work</span>(); <span className="text-gray-500">// Dynamic Call</span>
-              </div>
-              <div>&#125;</div>
-              <br/>
-              <div className={`${activeCode === 'connect' ? 'bg-blue-500/30 -mx-4 px-4 py-1' : ''} transition-colors duration-300`}>
-                computer.connect(<span className="text-blue-400">new</span> <span className="text-yellow-300">{device ? device.charAt(0).toUpperCase() + device.slice(1) : '...'}</span>());
-              </div>
-            </div>
-          </div>
+        {/* Connection Line */}
+        <ArrowDown className="text-slate-300" size={24} />
 
-          {/* Console Output */}
-          <div className="flex-1 bg-black rounded-xl shadow-lg p-4 font-mono text-sm overflow-hidden flex flex-col">
-            <div className="text-gray-500 border-b border-gray-800 pb-2 mb-2">Console Output</div>
-            <div className="flex-1 overflow-auto space-y-1 scrollbar-thin scrollbar-thumb-gray-700">
-              {logs.length === 0 && <span className="text-gray-600 italic">Ready...</span>}
-              {logs.map((log, index) => (
-                <div key={index} className="text-green-400 animate-fade-in">
-                  {log}
-                </div>
-              ))}
-            </div>
+        {/* Interface Block */}
+        <div className="w-full bg-white border-2 border-dashed border-slate-300 rounded-xl p-4 flex items-center gap-4 relative overflow-hidden">
+          <div className="absolute top-0 left-0 bg-slate-100 text-[10px] text-slate-500 px-2 py-0.5 rounded-br">
+            Interface
           </div>
+          <div className="p-3 bg-blue-50 rounded-lg text-blue-500 mt-2">
+            <Usb size={24} />
+          </div>
+          <div className="flex-1 mt-2">
+            <div className="font-bold text-slate-700 text-sm">USB Port</div>
+            <div className="text-xs text-slate-500">Universal Serial Bus</div>
+          </div>
+        </div>
+
+        {/* Connection Line (Dynamic) */}
+        <motion.div 
+          animate={{ 
+            opacity: device ? 1 : 0.2, 
+            y: device ? 0 : -10,
+            scale: device ? 1 : 0.8
+          }} 
+        >
+          <ArrowDown className={device ? "text-blue-500" : "text-slate-200"} size={24} />
+        </motion.div>
+
+        {/* Device Block (Dynamic) */}
+        <AnimatePresence mode="wait">
+          {device ? (
+            <motion.div
+              key={device}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="w-full bg-blue-600 text-white rounded-xl p-4 shadow-lg flex items-center gap-4"
+            >
+              <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
+                <DeviceIcon type={device} size={28} />
+              </div>
+              <div className="flex-1">
+                <div className="text-xs text-blue-200 uppercase font-bold">Connected Device</div>
+                <div className="font-bold text-lg capitalize">{device}</div>
+              </div>
+              <div className="p-1 bg-green-400 rounded-full" />
+            </motion.div>
+          ) : (
+            <div className="w-full h-20 border-2 border-slate-100 rounded-xl flex items-center justify-center text-slate-300 text-sm italic">
+              No Device Connected
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* 3. Console / Logs (Fixed Bottom) */}
+      <div className="bg-slate-900 text-green-400 p-4 font-mono text-xs border-t border-slate-800 max-h-48 overflow-y-auto">
+        <div className="flex items-center gap-2 text-slate-500 mb-2 border-b border-slate-800 pb-1 sticky top-0 bg-slate-900">
+          <Terminal size={12} />
+          <span className="font-bold">System Log</span>
+        </div>
+        <div className="flex flex-col gap-1">
+          {logs.slice(-5).map((log, i) => (
+            <div key={i} className="opacity-90">{log}</div>
+          ))}
+          <div className="h-2" /> {/* spacer */}
         </div>
       </div>
     </div>

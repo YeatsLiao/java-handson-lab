@@ -34,7 +34,7 @@ export const Demo: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-6 p-6">
-      <div className="flex gap-4 items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+      <div className="flex flex-wrap gap-4 items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
         <button
           onClick={() => createShape('circle')}
           className="flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors font-medium"
