@@ -8,6 +8,9 @@ import { References } from './pages/labs/References';
 import { Stack } from './pages/labs/Stack';
 import { StringPool } from './pages/labs/StringPool';
 import { FlowControl } from './pages/labs/FlowControl';
+import { Polymorphism } from './pages/labs/Polymorphism';
+import { Interfaces } from './pages/labs/Interfaces';
+import { StaticMembers } from './pages/labs/StaticMembers';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,18 @@ const router = createBrowserRouter([
       {
         path: 'labs/flow-control',
         element: <FlowControl />,
+      },
+      {
+        path: 'labs/polymorphism',
+        element: <Polymorphism />,
+      },
+      {
+        path: 'labs/interfaces',
+        element: <Interfaces />,
+      },
+      {
+        path: 'labs/static-members',
+        element: <StaticMembers />,
       },
       {
         path: 'labs/:labId',
