@@ -1,13 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LabLayout } from '../../../components/LabLayout/LabLayout';
 import { Guide } from './Guide';
 import { Demo } from './Demo';
 
 export const ArrayListLab: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <LabLayout
-      title="ArrayList 扩容机制 (ArrayList Resizing)"
-      description="探索 ArrayList 的动态扩容原理，理解底层数组如何随着元素的添加而自动增长。"
+      title={t('labs.arrayList.title')}
+      description={t('labs.arrayList.desc')}
       guide={<Guide />}
       demo={<Demo />}
     />

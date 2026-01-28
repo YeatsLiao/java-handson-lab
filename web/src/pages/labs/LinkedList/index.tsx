@@ -1,13 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LabLayout } from '../../../components/LabLayout/LabLayout';
 import { Guide } from './Guide';
 import { Demo } from './Demo';
 
 export const LinkedListLab: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <LabLayout
-      title="LinkedList 链表结构"
-      description="探索双向链表 (Doubly Linked List) 的内部结构，理解节点 (Node) 之间的引用关系及增删操作。"
+      title={t('labs.linkedList.title')}
+      description={t('labs.linkedList.desc')}
       guide={<Guide />}
       demo={<Demo />}
     />

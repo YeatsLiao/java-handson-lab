@@ -1,13 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LabLayout } from '../../../components/LabLayout/LabLayout';
 import { Guide } from './Guide.tsx';
 import { Demo } from './Demo.tsx';
 
 export const Stack: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <LabLayout
-      title="方法调用栈 (Stack Frame)"
-      description="可视化 Java 方法调用的压栈 (Push) 与出栈 (Pop) 过程，理解局部变量的生命周期。"
+      title={t('labs.stack.title')}
+      description={t('labs.stack.desc')}
       guide={<Guide />}
       demo={<Demo />}
     />

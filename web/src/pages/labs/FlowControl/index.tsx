@@ -1,13 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LabLayout } from '../../../components/LabLayout/LabLayout';
 import { Guide } from './Guide.tsx';
 import { Demo } from './Demo.tsx';
 
 export const FlowControl: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <LabLayout
-      title="流程控制 (Loops)"
-      description="可视化 for 循环的执行流程，观察计数器变量的变化与循环条件的判断。"
+      title={t('labs.flowControl.title')}
+      description={t('labs.flowControl.desc')}
       guide={<Guide />}
       demo={<Demo />}
     />

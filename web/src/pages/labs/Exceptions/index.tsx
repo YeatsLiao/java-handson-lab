@@ -1,13 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LabLayout } from '../../../components/LabLayout/LabLayout';
 import { Guide } from './Guide';
 import { Demo } from './Demo';
 
 export const ExceptionsLab: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <LabLayout
-      title="异常处理机制 (Exception Handling)"
-      description="可视化 Java 异常处理流程，理解 try-catch-finally 执行顺序及异常抛出机制。"
+      title={t('labs.exceptions.title')}
+      description={t('labs.exceptions.desc')}
       guide={<Guide />}
       demo={<Demo />}
     />

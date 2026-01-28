@@ -1,14 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, RotateCcw, AlertTriangle, Check, ArrowDown, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 type Step = 'start' | 'try' | 'exception' | 'catch' | 'finally' | 'end';
 
 export const Demo: React.FC = () => {
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState<Step>('start');
   const [hasException, setHasException] = useState(true);
-  const [logs, setLogs] = useState<string[]>(['System ready.']);
+  const [logs, setLogs] = useState<string[]>([]);
   const logsEndRef = useRef<HTMLDivElement>(null);
+
+  // Initialize log
+  useEffect(() => {
+    setLogs([t('labs.exceptions.ready')]);
+  }, [t]);
 
   const addLog = (msg: string) => setLogs(prev => [...prev, msg]);
 
@@ -19,36 +26,36 @@ export const Demo: React.FC = () => {
   const runStep = () => {
     if (currentStep === 'end') {
       setCurrentStep('start');
-      setLogs(['System ready.']);
+      setLogs([t('labs.exceptions.ready')]);
       return;
     }
 
     switch (currentStep) {
       case 'start':
         setCurrentStep('try');
-        addLog('> Entering try block...');
+        addLog(t('labs.exceptions.enterTry'));
         break;
       case 'try':
         if (hasException) {
           setCurrentStep('exception');
-          addLog('> ❌ Exception: ArithmeticException');
+          addLog(t('labs.exceptions.exception'));
         } else {
           setCurrentStep('finally');
-          addLog('> ✅ Try block success. Skipping catch.');
+          addLog(t('labs.exceptions.trySuccess'));
         }
         break;
       case 'exception':
         setCurrentStep('catch');
-        addLog('> Entering catch block...');
+        addLog(t('labs.exceptions.enterCatch'));
         break;
       case 'catch':
         setCurrentStep('finally');
-        addLog('> Exception handled. Entering finally...');
+        addLog(t('labs.exceptions.handled'));
         break;
       case 'finally':
         setCurrentStep('end');
-        addLog('> Finally block executed.');
-        addLog('> Process finished.');
+        addLog(t('labs.exceptions.finally'));
+        addLog(t('labs.exceptions.finished'));
         break;
     }
   };
@@ -89,12 +96,12 @@ export const Demo: React.FC = () => {
       {/* 1. Controls (Sticky Top) */}
       <div className="bg-white border-b border-slate-200 p-3 shadow-sm z-10 flex items-center justify-between shrink-0">
         <button
-          onClick={() => { setHasException(!hasException); setCurrentStep('start'); setLogs(['System ready.']); }}
+          onClick={() => { setHasException(!hasException); setCurrentStep('start'); setLogs([t('labs.exceptions.ready')]); }}
           className={`text-xs font-bold px-3 py-1.5 rounded-lg border flex items-center gap-2 transition-colors ${
             hasException ? 'bg-red-50 text-red-600 border-red-200' : 'bg-green-50 text-green-600 border-green-200'
           }`}
         >
-          {hasException ? '⚠️ Will Fail' : '✅ Will Pass'}
+          {hasException ? t('labs.exceptions.willFail') : t('labs.exceptions.willPass')}
         </button>
 
         <button

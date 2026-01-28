@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface Entry {
   key: string;
@@ -11,10 +12,16 @@ interface Entry {
 const BUCKET_COUNT = 4; // Small number for demo collisions
 
 export const Demo: React.FC = () => {
+  const { t } = useTranslation();
   const [buckets, setBuckets] = useState<Entry[][]>(Array(BUCKET_COUNT).fill([]));
   const [inputKey, setInputKey] = useState('');
   const [inputValue, setInputValue] = useState('');
-  const [log, setLog] = useState<string[]>(['初始化 HashMap, Buckets: 4']);
+  const [log, setLog] = useState<string[]>([]);
+
+  // Initialize log on first render
+  React.useEffect(() => {
+    setLog([t('labs.hashMap.init')]);
+  }, [t]);
 
   const addLog = (msg: string) => setLog(prev => [...prev, msg]);
 
@@ -33,7 +40,7 @@ export const Demo: React.FC = () => {
     const hash = simpleHash(inputKey);
     const index = hash % BUCKET_COUNT;
     
-    addLog(`put("${inputKey}", "${inputValue}") -> Hash: ${hash} -> Index: ${index}`);
+    addLog(t('labs.hashMap.put', { key: inputKey, value: inputValue, hash, index }));
 
     setBuckets(prev => {
       const newBuckets = [...prev];
@@ -42,11 +49,11 @@ export const Demo: React.FC = () => {
       // Check if key exists (update)
       const existingIdx = bucket.findIndex(e => e.key === inputKey);
       if (existingIdx >= 0) {
-        addLog(`Key "${inputKey}" 已存在，更新值: ${bucket[existingIdx].value} -> ${inputValue}`);
+        addLog(t('labs.hashMap.update', { key: inputKey, oldVal: bucket[existingIdx].value, newVal: inputValue }));
         bucket[existingIdx] = { ...bucket[existingIdx], value: inputValue };
       } else {
         if (bucket.length > 0) {
-          addLog(`发生哈希冲突 (Collision) @ Index ${index}，添加到链表`);
+          addLog(t('labs.hashMap.collision', { index }));
         }
         bucket.push({ key: inputKey, value: inputValue, hash });
       }
@@ -61,7 +68,7 @@ export const Demo: React.FC = () => {
 
   const clear = () => {
     setBuckets(Array(BUCKET_COUNT).fill([]));
-    setLog(['重置 HashMap']);
+    setLog([t('labs.hashMap.reset')]);
   };
 
   return (
@@ -69,7 +76,7 @@ export const Demo: React.FC = () => {
       {/* Input Area */}
       <div className="flex flex-wrap gap-4 items-end bg-gray-50 p-4 rounded-lg border border-gray-200">
         <div>
-          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Key</label>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">{t('labs.hashMap.key')}</label>
           <input
             type="text"
             value={inputKey}
@@ -79,7 +86,7 @@ export const Demo: React.FC = () => {
           />
         </div>
         <div>
-          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Value</label>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">{t('labs.hashMap.value')}</label>
           <input
             type="text"
             value={inputValue}
@@ -93,12 +100,14 @@ export const Demo: React.FC = () => {
           disabled={!inputKey || !inputValue}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <Plus size={20} /> Put
+          <Plus size={20} /> {t('labs.hashMap.btnPut')}
         </button>
         <button
           onClick={clear}
           className="ml-auto px-4 py-2 text-gray-500 hover:text-gray-700"
+          title={t('labs.hashMap.reset')}
         >
+        
           <Trash2 size={20} />
         </button>
       </div>

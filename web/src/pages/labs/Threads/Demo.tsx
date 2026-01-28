@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Pause, Clock, Lock, CheckCircle, Power } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 type ThreadState = 'NEW' | 'RUNNABLE' | 'BLOCKED' | 'WAITING' | 'TIMED_WAITING' | 'TERMINATED';
 
 export const Demo: React.FC = () => {
+  const { t } = useTranslation();
   const [state, setState] = useState<ThreadState>('NEW');
-  const [log, setLog] = useState<string[]>(['Thread created (NEW)']);
+  const [log, setLog] = useState<string[]>([]);
+
+  useEffect(() => {
+    setLog([t('labs.threads.logCreated')]);
+  }, [t]);
 
   const addLog = (msg: string) => setLog(prev => [...prev, msg]);
 
@@ -14,52 +20,52 @@ export const Demo: React.FC = () => {
     start: () => {
       if (state === 'NEW') {
         setState('RUNNABLE');
-        addLog('t.start() -> RUNNABLE');
+        addLog(t('labs.threads.logStart'));
       }
     },
     wait: () => {
       if (state === 'RUNNABLE') {
         setState('WAITING');
-        addLog('obj.wait() -> WAITING');
+        addLog(t('labs.threads.logWait'));
       }
     },
     notify: () => {
       if (state === 'WAITING') {
         setState('RUNNABLE');
-        addLog('obj.notify() -> RUNNABLE');
+        addLog(t('labs.threads.logNotify'));
       }
     },
     sleep: () => {
       if (state === 'RUNNABLE') {
         setState('TIMED_WAITING');
-        addLog('Thread.sleep(1000) -> TIMED_WAITING');
+        addLog(t('labs.threads.logSleep'));
         setTimeout(() => {
           setState(s => s === 'TIMED_WAITING' ? 'RUNNABLE' : s);
-          addLog('Time up -> RUNNABLE');
+          addLog(t('labs.threads.logTimeUp'));
         }, 2000);
       }
     },
     sync: () => {
       if (state === 'RUNNABLE') {
         setState('BLOCKED');
-        addLog('Enter synchronized (locked) -> BLOCKED');
+        addLog(t('labs.threads.logSync'));
       }
     },
     acquire: () => {
       if (state === 'BLOCKED') {
         setState('RUNNABLE');
-        addLog('Lock acquired -> RUNNABLE');
+        addLog(t('labs.threads.logAcquire'));
       }
     },
     finish: () => {
       if (state === 'RUNNABLE') {
         setState('TERMINATED');
-        addLog('run() finished -> TERMINATED');
+        addLog(t('labs.threads.logFinish'));
       }
     },
     reset: () => {
       setState('NEW');
-      setLog(['Thread reset (NEW)']);
+      setLog([t('labs.threads.logReset')]);
     }
   };
 
@@ -112,7 +118,7 @@ export const Demo: React.FC = () => {
       </div>
 
       {/* Visualization */}
-      <div className="flex-1 bg-white p-4 md:p-8 rounded-xl border border-gray-200 shadow-sm flex items-center justify-center relative">
+      <div className="flex-1 bg-white p-4 md:p-8 rounded-xl border border-gray-200 shadow-sm flex items-center justify-center relative overflow-auto">
         <div className="relative w-full max-w-2xl h-80">
           
           {/* Central State Display */}
@@ -124,7 +130,7 @@ export const Demo: React.FC = () => {
                 className={`w-48 h-48 rounded-full flex flex-col items-center justify-center border-4 shadow-xl transition-colors duration-500 z-10 ${getStateColor(state)}`}
              >
                 <div className="text-3xl font-bold">{state}</div>
-                <div className="text-xs mt-2 opacity-80">Current State</div>
+                <div className="text-xs mt-2 opacity-80">{t('labs.threads.currentState')}</div>
              </motion.div>
           </div>
 

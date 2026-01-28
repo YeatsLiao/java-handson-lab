@@ -1,0 +1,310 @@
+{
+  "sidebar": {
+    "title": "Java Hands-on",
+    "subtitle": "Interactive Learning Lab",
+    "home": "Home",
+    "categories": {
+      "basics": "Java Basics",
+      "oop": "OOP",
+      "collections": "Collections",
+      "advanced": "Advanced & Concurrency"
+    },
+    "items": {
+      "primitiveTypes": "Primitive Types",
+      "references": "References & Objects",
+      "stack": "Method Call Stack",
+      "stringPool": "String Pool",
+      "flowControl": "Flow Control",
+      "polymorphism": "Inheritance & Polymorphism",
+      "interfaces": "Interfaces & Implementation",
+      "staticMembers": "Static Members",
+      "arrayList": "ArrayList Expansion",
+      "linkedList": "LinkedList",
+      "hashMap": "HashMap Principle",
+      "exceptions": "Exception Handling",
+      "threads": "Thread States",
+      "locks": "Lock Mechanism",
+      "gc": "Garbage Collection"
+    },
+    "tooltips": {
+      "toggleTheme": "Toggle Theme",
+      "toggleLang": "Switch Language",
+      "github": "GitHub Source"
+    },
+    "footer": {
+      "version": "v1.0.0 | Built with React"
+    }
+  },
+  "home": {
+    "hero": {
+      "title_prefix": "Java",
+      "title_highlight": "Visual",
+      "title_suffix": "Lab",
+      "subtitle": "Say goodbye to boring console outputs. Intuitively understand Java core mechanisms, data structures, and concurrency principles through interactive animations and real-time memory models.",
+      "start": "Start Learning",
+      "source": "View Source"
+    },
+    "features": {
+      "memory": {
+        "title": "Memory Model Visualization",
+        "desc": "Dynamically display Stack and Heap allocation processes to thoroughly understand reference passing."
+      },
+      "flow": {
+        "title": "Flow Control Animation",
+        "desc": "Code line highlighting and real-time variable tracking to visually present loops, recursion, and multi-thread switching."
+      },
+      "interactive": {
+        "title": "Interactive Experiments",
+        "desc": "Don't just watch, do it. Adjust parameters, simulate exceptions, trigger GC, and observe program reactions."
+      }
+    },
+    "sections": {
+      "title": "Explore Modules"
+    }
+  },
+  "labs": {
+    "common": {
+      "guide": "Guide",
+      "lab": "Interactive Lab",
+      "codeConsole": "Code Console",
+      "execute": "Execute",
+      "empty": "Empty",
+      "stack": "STACK",
+      "heap": "HEAP"
+    },
+    "primitiveTypes": {
+      "title": "Primitive Types & Memory",
+      "desc": "Understand Java's 8 primitive types and how they are stored in Stack Memory."
+    },
+    "references": {
+      "title": "Reference Types & Objects",
+      "desc": "Understand Reference Types and how objects are created in Heap Memory.",
+      "refAssignment": "Reference Assignment",
+      "varExists": "Variable name {{name}} already exists!"
+    },
+    "placeholder": {
+      "title": "Lab {{name}} is under construction",
+      "description": "We are working hard to build this interactive lab. Please check back later or try other completed modules."
+    },
+    "demo": {
+      "type": "Type",
+      "name": "Name",
+      "value": "Value",
+      "add": "Add",
+      "declare": "Declare",
+      "clear": "Clear",
+      "varExists": "Variable {{name}} already exists!"
+    },
+    "gc": {
+      "title": "Garbage Collection",
+      "desc": "Visualize Java Heap structure and GC process, understanding Eden, Survivor, and Old Gen.",
+      "edenFull": "Eden is full! Please run Minor GC",
+      "allocated": "Allocated Object #{{id}} in Eden",
+      "heapInit": "Heap initialized",
+      "heapCleared": "Heap cleared",
+      "gcResult": "GC Result: {{collected}} collected, {{survived}} moved to {{target}}, {{promoted}} promoted to Old Gen",
+      "triggerGC": "Trigger Minor GC",
+      "clearHeap": "Clear Heap",
+      "allocate": "Allocate Object",
+      "minorGC": "Minor GC",
+      "youngGen": "Young Generation",
+      "oldGen": "Old Generation",
+      "eden": "Eden Space",
+      "s0": "Survivor 0",
+      "s1": "Survivor 1",
+      "tenured": "Tenured Space"
+    },
+    "arrayList": {
+      "title": "ArrayList Resizing",
+      "desc": "Explore ArrayList dynamic resizing and how the underlying array grows.",
+      "init": "Initialized ArrayList, default capacity: {{capacity}}",
+      "resizing": "Insufficient capacity ({{capacity}}), triggering resize -> {{newCapacity}}",
+      "resizeComplete": "Resize complete, added element: {{value}}",
+      "add": "Added element: {{value}}, current size: {{size}}/{{capacity}}",
+      "reset": "Reset ArrayList, capacity: {{capacity}}",
+      "btn_resizing": "Resizing...",
+      "btn_add": "Add Element",
+      "btn_reset": "Reset"
+    },
+    "flowControl": {
+      "title": "Flow Control (Loops)",
+      "desc": "Visualize for-loop execution, observing counter changes and condition checks.",
+      "init": "Init: int i = 0",
+      "check": "Condition: {{currentI}} < {{limit}} ? {{result}}",
+      "body": "Body: print({{currentI}})",
+      "update": "Update: i++ (i becomes {{currentI}})",
+      "done": "Loop Finished",
+      "start": "Start Execution",
+      "pause": "Pause",
+      "reset": "Reset",
+      "console": "Console Output",
+      "lines": "{{count}} lines",
+      "variables": "Variables"
+    },
+    "stack": {
+      "title": "Method Call Stack",
+      "desc": "Visualize method Push and Pop operations, understanding local variable lifecycle.",
+      "overflow": "Stack Overflow! (Simulated)",
+      "running": "Running...",
+      "run": "Run Recursive Demo",
+      "reset": "Reset",
+      "bottom": "Stack Bottom",
+      "empty": "Stack Empty",
+      "waiting": "Waiting...",
+      "frame": "Frame #{{index}}"
+    },
+    "stringPool": {
+      "title": "String Pool",
+      "desc": "Deep dive into String immutability and the String Pool memory optimization.",
+      "varExists": "Variable name already exists",
+      "enterName": "Please enter variable name",
+      "literal": "Literal",
+      "newString": "new String()",
+      "reset": "Reset",
+      "heap": "HEAP (Objects)",
+      "pool": "STRING POOL",
+      "object": "String Object"
+    },
+    "hashMap": {
+      "title": "HashMap Principle",
+      "desc": "Understand HashMap internals, including hash calculation, array+linked list structure, and collision handling.",
+      "init": "Init HashMap, Buckets: 4",
+      "put": "put(\"{{key}}\", \"{{value}}\") -> Hash: {{hash}} -> Index: {{index}}",
+      "update": "Key \"{{key}}\" exists, update value: {{oldVal}} -> {{newVal}}",
+      "collision": "Hash Collision @ Index {{index}}, add to list",
+      "reset": "Reset HashMap",
+      "key": "Key",
+      "value": "Value",
+      "btnPut": "Put"
+    },
+    "exceptions": {
+      "title": "Exception Handling",
+      "desc": "Visualize Java exception handling flow, try-catch-finally execution order.",
+      "ready": "System ready.",
+      "enterTry": "> Entering try block...",
+      "exception": "> ❌ Exception: ArithmeticException",
+      "trySuccess": "> ✅ Try block success. Skipping catch.",
+      "enterCatch": "> Entering catch block...",
+      "handled": "> Exception handled. Entering finally...",
+      "finally": "> Finally block executed.",
+      "finished": "> Process finished.",
+      "willFail": "⚠️ Will Fail",
+      "willPass": "✅ Will Pass"
+    },
+    "linkedList": {
+      "title": "LinkedList Structure",
+      "desc": "Explore Doubly Linked List structure, node references, and add/remove operations.",
+      "init": "Init LinkedList (Empty)",
+      "addFirst": "addFirst({{val}}): O(1) op, update head ref",
+      "addLast": "addLast({{val}}): O(1) op, update tail ref",
+      "removeFirst": "removeFirst(): remove {{val}}",
+      "removeLast": "removeLast(): remove {{val}}",
+      "reset": "Reset LinkedList",
+      "btnAddFirst": "Add First",
+      "btnAddLast": "Add Last",
+      "btnRemoveFirst": "Remove First",
+      "btnRemoveLast": "Remove Last",
+      "head": "HEAD",
+      "node": "Node",
+      "prevNext": "Prev: {{prev}} | Next: {{next}}"
+    },
+    "interfaces": {
+      "title": "Interfaces & Implementation",
+      "desc": "Visualize interface definitions and multiple implementations, understanding decoupling.",
+      "demoTitle": "USB PnP Lab",
+      "ready": "System ready. Waiting for device...",
+      "connecting": "> Connecting {{type}}...",
+      "driverLoaded": "> {{type}} driver loaded.",
+      "deviceReady": "> {{type}} is ready.",
+      "disconnecting": "> Disconnecting {{device}}...",
+      "removed": "> Device removed.",
+      "eject": "Eject",
+      "keyboard": "Keyboard",
+      "mouse": "Mouse",
+      "printer": "Printer",
+      "host": "Host System",
+      "myComputer": "MyComputer",
+      "interface": "Interface",
+      "usbPort": "USB Port",
+      "usbDesc": "Universal Serial Bus",
+      "connectedDevice": "Connected Device",
+      "noDevice": "No Device Connected",
+      "systemLog": "System Log"
+    },
+    "locks": {
+      "title": "Locks & Thread Safety",
+      "desc": "Demonstrate race conditions in multi-threaded environments and synchronized usage.",
+      "mode": "Mode:",
+      "safe": "Synchronized (Safe)",
+      "unsafe": "No Lock (Unsafe)",
+      "startSim": "Start Simulation (2 Threads x 10 Inc)",
+      "sharedCount": "Shared Count",
+      "thread1": "Thread 1",
+      "thread2": "Thread 2",
+      "executing": "Executing...",
+      "result": "Result: {{count}} / 20 {{status}}",
+      "dataLoss": "(Data Loss!)",
+      "correct": "(Correct)"
+    },
+    "polymorphism": {
+      "title": "Inheritance & Polymorphism",
+      "desc": "Visualize dynamic binding and polymorphic method calls.",
+      "newShape": "> Shape s = new {{type}}();",
+      "errorNull": "> Error: s is null!",
+      "drawCall": "> s.draw(); // Calls {{type}}.draw()",
+      "btnCircle": "new Circle()",
+      "btnSquare": "new Square()",
+      "btnDraw": "s.draw()",
+      "heap": "Heap Memory",
+      "noObject": "No object instantiated",
+      "shapeRef": "Shape s",
+      "object": "Object",
+      "commentExample": "// Polymorphism Example",
+      "commentBinding": "// Dynamic Binding",
+      "console": "Console Output",
+      "ready": "Ready..."
+    },
+    "staticMembers": {
+      "title": "Static vs Instance Members",
+      "desc": "Compare static (class) variables with instance variables and their memory areas.",
+      "maxInstances": "> Max 3 instances allowed for demo",
+      "newCounter": "> Counter c{{id}} = new Counter();",
+      "incInstance": "> c{{id}}.count++; // Instance variable: {{val}}",
+      "incStatic": "> Counter.globalCount++; // Static variable: {{val}}",
+      "btnNew": "new Counter()",
+      "btnIncStatic": "Counter.globalCount++",
+      "methodArea": "Method Area (Static Memory)",
+      "heap": "Heap Memory (Instances)",
+      "noInstances": "No instances created yet",
+      "comment": "// Static vs Instance Members",
+      "console": "Console Output",
+      "ready": "Ready..."
+    },
+    "threads": {
+      "title": "Thread States",
+      "desc": "Explore Java thread lifecycle and state transitions (New, Runnable, Waiting, etc.).",
+      "created": "Thread created (NEW)",
+      "start": "t.start() -> RUNNABLE",
+      "wait": "obj.wait() -> WAITING",
+      "notify": "obj.notify() -> RUNNABLE",
+      "sleep": "Thread.sleep(1000) -> TIMED_WAITING",
+      "timeUp": "Time up -> RUNNABLE",
+      "sync": "Enter synchronized (locked) -> BLOCKED",
+      "acquire": "Lock acquired -> RUNNABLE",
+      "finish": "run() finished -> TERMINATED",
+      "reset": "Thread reset (NEW)",
+      "btnStart": "start()",
+      "btnWait": "wait()",
+      "btnNotify": "notify()",
+      "btnSleep": "sleep()",
+      "btnBlock": "Block",
+      "btnAcquire": "Acquire",
+      "btnFinish": "Finish",
+      "btnReset": "Reset",
+      "currentState": "Current State"
+    }
+  },
+  "common": {
+    "loading": "Loading..."
+  }
+}

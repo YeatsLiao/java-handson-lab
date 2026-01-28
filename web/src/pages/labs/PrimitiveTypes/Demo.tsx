@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface StackVar {
   id: string;
@@ -18,6 +19,7 @@ const COLORS: Record<string, string> = {
 };
 
 export const Demo: React.FC = () => {
+  const { t } = useTranslation();
   const [variables, setVariables] = useState<StackVar[]>([]);
   const [selectedType, setSelectedType] = useState('int');
   const [varName, setVarName] = useState('a');
@@ -28,7 +30,7 @@ export const Demo: React.FC = () => {
     
     // Prevent duplicate names
     if (variables.some(v => v.name === varName)) {
-      alert(`变量名 ${varName} 已存在！`);
+      alert(t('labs.demo.varExists', { name: varName }));
       return;
     }
 
@@ -56,11 +58,11 @@ export const Demo: React.FC = () => {
       {/* Controls */}
       <div className="bg-white p-4 rounded-xl border border-gray-200 mb-6 space-y-4 shadow-sm">
         <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
-          代码控制台
+          {t('labs.common.codeConsole')}
         </h3>
         <div className="flex flex-wrap items-end gap-3 font-mono text-sm">
           <div className="flex flex-col gap-1">
-            <label className="text-xs text-gray-400">Type</label>
+            <label className="text-xs text-gray-400">{t('labs.demo.type')}</label>
             <select 
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
@@ -72,7 +74,7 @@ export const Demo: React.FC = () => {
           
           <div className="flex items-end gap-2 flex-wrap">
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-gray-400">Name</label>
+              <label className="text-xs text-gray-400">{t('labs.demo.name')}</label>
               <input 
                 type="text" 
                 value={varName}
@@ -85,7 +87,7 @@ export const Demo: React.FC = () => {
             <div className="pb-3 text-gray-400 font-bold">=</div>
 
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-gray-400">Value</label>
+              <label className="text-xs text-gray-400">{t('labs.demo.value')}</label>
               <input 
                 type="text" 
                 value={varValue}
@@ -102,13 +104,13 @@ export const Demo: React.FC = () => {
             onClick={addVariable}
             className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:scale-95 transition-all flex items-center gap-2"
           >
-            <Plus size={16} /> 声明变量
+            <Plus size={16} /> {t('labs.demo.declare')}
           </button>
 
           <button 
             onClick={clearStack}
             className="ml-auto px-3 py-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-            title="清空栈帧"
+            title={t('labs.demo.clear')}
           >
             <Trash2 size={18} />
           </button>
@@ -118,7 +120,7 @@ export const Demo: React.FC = () => {
       {/* Visualization Area */}
       <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-200 p-8 flex justify-center items-end overflow-hidden relative">
         <div className="absolute top-4 left-4 text-gray-400 font-bold text-sm tracking-widest">
-          STACK MEMORY (LIFO)
+          {t('labs.common.stack')} (LIFO)
         </div>
 
         <div className="w-full max-w-md flex flex-col-reverse gap-2 pb-8">
@@ -139,7 +141,7 @@ export const Demo: React.FC = () => {
           
           {variables.length === 0 && (
             <div className="text-center text-gray-300 py-12 border-2 border-dashed border-gray-200 rounded-xl">
-              栈内存为空
+              {t('labs.common.empty')}
             </div>
           )}
         </div>

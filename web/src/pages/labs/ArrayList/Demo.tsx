@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2, RefreshCw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const Demo: React.FC = () => {
+  const { t } = useTranslation();
   const [capacity, setCapacity] = useState(4);
   const [elements, setElements] = useState<number[]>([]);
   const [isResizing, setIsResizing] = useState(false);
-  const [log, setLog] = useState<string[]>(['初始化 ArrayList, 默认容量: 4']);
+  const [log, setLog] = useState<string[]>([t('labs.arrayList.init', { capacity: 4 })]);
 
   const addLog = (msg: string) => setLog(prev => [...prev, msg]);
 
@@ -16,7 +18,7 @@ export const Demo: React.FC = () => {
     if (elements.length >= capacity) {
       setIsResizing(true);
       const newCapacity = capacity + (capacity >> 1); // 1.5x
-      addLog(`容量不足 (${capacity})，触发扩容 -> ${newCapacity}`);
+      addLog(t('labs.arrayList.resizing', { capacity, newCapacity }));
       
       // Simulate delay for resizing animation
       setTimeout(() => {
@@ -24,19 +26,19 @@ export const Demo: React.FC = () => {
         setIsResizing(false);
         const newValue = Math.floor(Math.random() * 100);
         setElements(prev => [...prev, newValue]);
-        addLog(`扩容完成，添加元素: ${newValue}`);
+        addLog(t('labs.arrayList.resizeComplete', { value: newValue }));
       }, 1500);
     } else {
       const newValue = Math.floor(Math.random() * 100);
       setElements(prev => [...prev, newValue]);
-      addLog(`添加元素: ${newValue}, 当前大小: ${elements.length + 1}/${capacity}`);
+      addLog(t('labs.arrayList.add', { value: newValue, size: elements.length + 1, capacity }));
     }
   };
 
   const clear = () => {
     setCapacity(4);
     setElements([]);
-    setLog(['重置 ArrayList, 容量: 4']);
+    setLog([t('labs.arrayList.reset', { capacity: 4 })]);
   };
 
   return (
@@ -50,7 +52,7 @@ export const Demo: React.FC = () => {
           }`}
         >
           {isResizing ? <RefreshCw className="animate-spin" size={20} /> : <Plus size={20} />}
-          {isResizing ? '正在扩容...' : '添加元素 (Add)'}
+          {isResizing ? t('labs.arrayList.btn_resizing') : t('labs.arrayList.btn_add')}
         </button>
         <button
           onClick={clear}
@@ -58,7 +60,7 @@ export const Demo: React.FC = () => {
           className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors"
         >
           <Trash2 size={20} />
-          重置 (Reset)
+          {t('labs.arrayList.btn_reset')}
         </button>
       </div>
 

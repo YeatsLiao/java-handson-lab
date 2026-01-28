@@ -1,13 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LabLayout } from '../../../components/LabLayout/LabLayout';
 import { Guide } from './Guide';
 import { Demo } from './Demo';
 
 export const HashMapLab: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <LabLayout
-      title="HashMap 工作原理"
-      description="深入理解 HashMap 的底层实现，包括哈希计算、数组+链表结构以及哈希冲突 (Collision) 的处理方式。"
+      title={t('labs.hashMap.title')}
+      description={t('labs.hashMap.desc')}
       guide={<Guide />}
       demo={<Demo />}
     />

@@ -2,8 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code, Cpu, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const Home: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-12 py-8">
       {/* Hero Section */}
@@ -14,11 +17,10 @@ export const Home: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-5xl font-extrabold text-gray-900 tracking-tight sm:text-6xl mb-4">
-            Java <span className="text-blue-600">可视化</span> 实验室
+            {t('home.hero.title_prefix')} <span className="text-blue-600">{t('home.hero.title_highlight')}</span> {t('home.hero.title_suffix')}
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            告别枯燥的控制台输出。通过交互式动画和实时内存模型，
-            直观理解 Java 核心机制、数据结构与并发原理。
+            {t('home.hero.subtitle')}
           </p>
         </motion.div>
 
@@ -32,7 +34,7 @@ export const Home: React.FC = () => {
             to="/labs/primitive-types" 
             className="px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 flex items-center gap-2"
           >
-            开始学习 <ArrowRight size={18} />
+            {t('home.hero.start')} <ArrowRight size={18} />
           </Link>
           <a 
             href="https://github.com/YeatsLiao/java-handson-lab" 
@@ -40,7 +42,7 @@ export const Home: React.FC = () => {
             rel="noopener noreferrer"
             className="px-8 py-3 bg-white text-gray-700 border border-gray-200 rounded-full font-semibold hover:bg-gray-50 transition-colors"
           >
-            查看源码
+            {t('home.hero.source')}
           </a>
         </motion.div>
       </div>
@@ -49,38 +51,38 @@ export const Home: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto px-4">
         <FeatureCard 
           icon={<Layers className="text-purple-500" size={32} />}
-          title="内存模型可视化"
-          desc="动态展示 Stack（栈）与 Heap（堆）的分配过程，彻底搞懂引用传递。"
+          title={t('home.features.memory.title')}
+          desc={t('home.features.memory.desc')}
         />
         <FeatureCard 
           icon={<Cpu className="text-blue-500" size={32} />}
-          title="流程控制动画"
-          desc="代码行高亮与变量实时追踪，直观呈现循环、递归与多线程切换。"
+          title={t('home.features.flow.title')}
+          desc={t('home.features.flow.desc')}
         />
         <FeatureCard 
           icon={<Code className="text-green-500" size={32} />}
-          title="交互式实验"
-          desc="不仅是看，更要动手。调整参数、模拟异常、触发 GC，观察程序反应。"
+          title={t('home.features.interactive.title')}
+          desc={t('home.features.interactive.desc')}
         />
       </div>
 
       {/* Quick Start Links */}
       <div className="border-t border-gray-100 pt-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">探索实验模块</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">{t('home.sections.title')}</h2>
         
         <div className="space-y-10">
           {/* 阶段一：基础 */}
           <section>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-1 h-6 bg-blue-500 rounded-full"></span>
-              <h3 className="text-xl font-bold text-gray-700">Java 基础</h3>
+              <h3 className="text-xl font-bold text-gray-700">{t('sidebar.categories.basics')}</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <QuickLink to="/labs/primitive-types" label="基础数据类型" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-              <QuickLink to="/labs/references" label="引用与对象" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-              <QuickLink to="/labs/stack" label="方法调用栈" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-              <QuickLink to="/labs/string-pool" label="字符串常量池" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-              <QuickLink to="/labs/flow-control" label="流程控制" color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/primitive-types" label={t('sidebar.items.primitiveTypes')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/references" label={t('sidebar.items.references')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/stack" label={t('sidebar.items.stack')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/string-pool" label={t('sidebar.items.stringPool')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/flow-control" label={t('sidebar.items.flowControl')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
             </div>
           </section>
 
@@ -88,12 +90,12 @@ export const Home: React.FC = () => {
           <section>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-1 h-6 bg-indigo-500 rounded-full"></span>
-              <h3 className="text-xl font-bold text-gray-700">面向对象 (OOP)</h3>
+              <h3 className="text-xl font-bold text-gray-700">{t('sidebar.categories.oop')}</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <QuickLink to="/labs/polymorphism" label="继承与多态" color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
-              <QuickLink to="/labs/interfaces" label="接口与实现" color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
-              <QuickLink to="/labs/static-members" label="静态成员" color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
+              <QuickLink to="/labs/polymorphism" label={t('sidebar.items.polymorphism')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
+              <QuickLink to="/labs/interfaces" label={t('sidebar.items.interfaces')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
+              <QuickLink to="/labs/static-members" label={t('sidebar.items.staticMembers')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
             </div>
           </section>
 
@@ -101,12 +103,12 @@ export const Home: React.FC = () => {
           <section>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-1 h-6 bg-emerald-500 rounded-full"></span>
-              <h3 className="text-xl font-bold text-gray-700">集合框架</h3>
+              <h3 className="text-xl font-bold text-gray-700">{t('sidebar.categories.collections')}</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <QuickLink to="/labs/arraylist" label="ArrayList 扩容" color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
-              <QuickLink to="/labs/linkedlist" label="LinkedList 链表" color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
-              <QuickLink to="/labs/hashmap" label="HashMap 原理" color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
+              <QuickLink to="/labs/arraylist" label={t('sidebar.items.arrayList')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
+              <QuickLink to="/labs/linkedlist" label={t('sidebar.items.linkedList')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
+              <QuickLink to="/labs/hashmap" label={t('sidebar.items.hashMap')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
             </div>
           </section>
 
@@ -114,13 +116,13 @@ export const Home: React.FC = () => {
           <section>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-1 h-6 bg-orange-500 rounded-full"></span>
-              <h3 className="text-xl font-bold text-gray-700">进阶与并发</h3>
+              <h3 className="text-xl font-bold text-gray-700">{t('sidebar.categories.advanced')}</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <QuickLink to="/labs/exceptions" label="异常处理" color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
-              <QuickLink to="/labs/threads" label="多线程状态" color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
-              <QuickLink to="/labs/locks" label="锁与线程安全" color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
-              <QuickLink to="/labs/gc" label="GC 垃圾回收" color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
+              <QuickLink to="/labs/exceptions" label={t('sidebar.items.exceptions')} color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
+              <QuickLink to="/labs/threads" label={t('sidebar.items.threads')} color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
+              <QuickLink to="/labs/locks" label={t('sidebar.items.locks')} color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
+              <QuickLink to="/labs/gc" label={t('sidebar.items.gc')} color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
             </div>
           </section>
         </div>

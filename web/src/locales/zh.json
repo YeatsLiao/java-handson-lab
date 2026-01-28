@@ -1,0 +1,310 @@
+{
+  "sidebar": {
+    "title": "Java Hands-on",
+    "subtitle": "交互式学习实验室",
+    "home": "首页",
+    "categories": {
+      "basics": "Java 基础",
+      "oop": "面向对象",
+      "collections": "集合框架",
+      "advanced": "进阶与并发"
+    },
+    "items": {
+      "primitiveTypes": "基础数据类型",
+      "references": "引用与对象",
+      "stack": "方法调用栈",
+      "stringPool": "字符串常量池",
+      "flowControl": "流程控制",
+      "polymorphism": "继承与多态",
+      "interfaces": "接口与实现",
+      "staticMembers": "静态成员",
+      "arrayList": "ArrayList 扩容",
+      "linkedList": "LinkedList",
+      "hashMap": "HashMap 原理",
+      "exceptions": "异常处理",
+      "threads": "多线程状态",
+      "locks": "锁机制",
+      "gc": "GC 垃圾回收"
+    },
+    "tooltips": {
+      "toggleTheme": "切换主题",
+      "toggleLang": "切换语言",
+      "github": "GitHub 源码"
+    },
+    "footer": {
+      "version": "v1.0.0 | Built with React"
+    }
+  },
+  "home": {
+    "hero": {
+      "title_prefix": "Java",
+      "title_highlight": "可视化",
+      "title_suffix": "实验室",
+      "subtitle": "告别枯燥的控制台输出。通过交互式动画和实时内存模型，直观理解 Java 核心机制、数据结构与并发原理。",
+      "start": "开始学习",
+      "source": "查看源码"
+    },
+    "features": {
+      "memory": {
+        "title": "内存模型可视化",
+        "desc": "动态展示 Stack（栈）与 Heap（堆）的分配过程，彻底搞懂引用传递。"
+      },
+      "flow": {
+        "title": "流程控制动画",
+        "desc": "代码行高亮与变量实时追踪，直观呈现循环、递归与多线程切换。"
+      },
+      "interactive": {
+        "title": "交互式实验",
+        "desc": "不仅是看，更要动手。调整参数、模拟异常、触发 GC，观察程序反应。"
+      }
+    },
+    "sections": {
+      "title": "探索实验模块"
+    }
+  },
+  "labs": {
+    "common": {
+      "guide": "知识点讲解",
+      "lab": "交互实验室",
+      "codeConsole": "代码控制台",
+      "execute": "执行代码",
+      "empty": "空",
+      "stack": "STACK",
+      "heap": "HEAP"
+    },
+    "primitiveTypes": {
+      "title": "基础数据类型与内存",
+      "desc": "深入理解 Java 的 8 种基本数据类型，以及它们在栈内存 (Stack) 中的存储方式。"
+    },
+    "references": {
+      "title": "引用类型与对象",
+      "desc": "理解 Java 中的引用类型 (Reference Type) 以及对象在堆内存 (Heap) 中的创建过程。",
+      "refAssignment": "引用赋值",
+      "varExists": "变量名 {{name}} 已存在！"
+    },
+    "placeholder": {
+      "title": "{{name}} 实验正在开发中",
+      "description": "我们正在努力构建这个交互式实验。请稍后回来查看，或先体验其他已完成的模块。"
+    },
+    "demo": {
+      "type": "类型",
+      "name": "名称",
+      "value": "值",
+      "add": "添加",
+      "declare": "声明变量",
+      "clear": "清空",
+      "varExists": "变量名 {{name}} 已存在！"
+    },
+    "gc": {
+      "title": "垃圾回收机制 (Garbage Collection)",
+      "desc": "可视化 Java 堆内存结构 (Heap) 及垃圾回收过程，理解 Eden、Survivor 和 Old Gen 区域的作用。",
+      "edenFull": "Eden 区已满！请执行 Minor GC",
+      "allocated": "在 Eden 区分配了对象 #{{id}}",
+      "heapInit": "堆内存已初始化",
+      "heapCleared": "堆已清空",
+      "gcResult": "GC 结果: 回收了 {{collected}} 个对象, {{survived}} 个对象移动到 {{target}}, {{promoted}} 个对象晋升到老年代",
+      "triggerGC": "触发 Minor GC",
+      "clearHeap": "清空堆",
+      "allocate": "分配对象",
+      "minorGC": "执行 Minor GC",
+      "youngGen": "新生代 (Young Gen)",
+      "oldGen": "老年代 (Old Gen)",
+      "eden": "Eden 区",
+      "s0": "Survivor 0",
+      "s1": "Survivor 1",
+      "tenured": "终身代 (Tenured Space)"
+    },
+    "arrayList": {
+      "title": "ArrayList 扩容机制 (ArrayList Resizing)",
+      "desc": "探索 ArrayList 的动态扩容原理，理解底层数组如何随着元素的添加而自动增长。",
+      "init": "初始化 ArrayList, 默认容量: {{capacity}}",
+      "resizing": "容量不足 ({{capacity}})，触发扩容 -> {{newCapacity}}",
+      "resizeComplete": "扩容完成，添加元素: {{value}}",
+      "add": "添加元素: {{value}}, 当前大小: {{size}}/{{capacity}}",
+      "reset": "重置 ArrayList, 容量: {{capacity}}",
+      "btn_resizing": "正在扩容...",
+      "btn_add": "添加元素",
+      "btn_reset": "重置"
+    },
+    "flowControl": {
+      "title": "流程控制 (Loops)",
+      "desc": "可视化 for 循环的执行流程，观察计数器变量的变化与循环条件的判断。",
+      "init": "执行初始化: int i = 0",
+      "check": "检查条件: {{currentI}} < {{limit}} ? {{result}}",
+      "body": "执行循环体: print({{currentI}})",
+      "update": "执行更新: i++ (i变为{{currentI}})",
+      "done": "循环结束",
+      "start": "开始执行",
+      "pause": "暂停",
+      "reset": "重置",
+      "console": "控制台输出",
+      "lines": "{{count}} 行",
+      "variables": "变量"
+    },
+    "stack": {
+      "title": "方法调用栈 (Stack Frame)",
+      "desc": "可视化 Java 方法调用的压栈 (Push) 与出栈 (Pop) 过程，理解局部变量的生命周期。",
+      "overflow": "Stack Overflow! (模拟)",
+      "running": "运行中...",
+      "run": "运行递归演示",
+      "reset": "重置",
+      "bottom": "栈底",
+      "empty": "栈为空",
+      "waiting": "等待中...",
+      "frame": "栈帧 #{{index}}"
+    },
+    "stringPool": {
+      "title": "字符串常量池 (String Pool)",
+      "desc": "深入理解 Java 字符串的不可变性以及字符串常量池的内存优化机制。",
+      "varExists": "变量名已存在",
+      "enterName": "请输入变量名",
+      "literal": "字面量",
+      "newString": "new String()",
+      "reset": "重置",
+      "heap": "堆 (Objects)",
+      "pool": "字符串常量池 (String Pool)",
+      "object": "String 对象"
+    },
+    "hashMap": {
+      "title": "HashMap 工作原理",
+      "desc": "深入理解 HashMap 的底层实现，包括哈希计算、数组+链表结构以及哈希冲突 (Collision) 的处理方式。",
+      "init": "初始化 HashMap, Buckets: 4",
+      "put": "put(\"{{key}}\", \"{{value}}\") -> Hash: {{hash}} -> Index: {{index}}",
+      "update": "Key \"{{key}}\" 已存在，更新值: {{oldVal}} -> {{newVal}}",
+      "collision": "发生哈希冲突 (Collision) @ Index {{index}}，添加到链表",
+      "reset": "重置 HashMap",
+      "key": "键 (Key)",
+      "value": "值 (Value)",
+      "btnPut": "Put"
+    },
+    "exceptions": {
+      "title": "异常处理机制 (Exception Handling)",
+      "desc": "可视化 Java 异常处理流程，理解 try-catch-finally 执行顺序及异常抛出机制。",
+      "ready": "系统就绪。",
+      "enterTry": "> 进入 try 块...",
+      "exception": "> ❌ 异常: ArithmeticException",
+      "trySuccess": "> ✅ Try 块成功。跳过 catch。",
+      "enterCatch": "> 进入 catch 块...",
+      "handled": "> 异常已处理。进入 finally...",
+      "finally": "> Finally 块已执行。",
+      "finished": "> 流程结束。",
+      "willFail": "⚠️ 将失败",
+      "willPass": "✅ 将通过"
+    },
+    "linkedList": {
+      "title": "LinkedList 链表结构",
+      "desc": "探索双向链表 (Doubly Linked List) 的内部结构，理解节点 (Node) 之间的引用关系及增删操作。",
+      "init": "初始化 LinkedList (空)",
+      "addFirst": "addFirst({{val}}): O(1) 操作，修改 head 引用",
+      "addLast": "addLast({{val}}): O(1) 操作，修改 tail 引用",
+      "removeFirst": "removeFirst(): 移除 {{val}}",
+      "removeLast": "removeLast(): 移除 {{val}}",
+      "reset": "重置 LinkedList",
+      "btnAddFirst": "添加头部",
+      "btnAddLast": "添加尾部",
+      "btnRemoveFirst": "移除头部",
+      "btnRemoveLast": "移除尾部",
+      "head": "头 (HEAD)",
+      "node": "节点",
+      "prevNext": "前: {{prev}} | 后: {{next}}"
+    },
+    "interfaces": {
+      "title": "接口与实现 (Interfaces)",
+      "desc": "可视化接口定义规范与多重实现，理解接口在解耦中的作用。",
+      "demoTitle": "USB 即插即用实验室",
+      "ready": "系统就绪。等待设备...",
+      "connecting": "> 正在连接 {{type}}...",
+      "driverLoaded": "> {{type}} 驱动已加载。",
+      "deviceReady": "> {{type}} 就绪。",
+      "disconnecting": "> 正在断开 {{device}}...",
+      "removed": "> 设备已移除。",
+      "eject": "弹出",
+      "keyboard": "键盘",
+      "mouse": "鼠标",
+      "printer": "打印机",
+      "host": "主机系统",
+      "myComputer": "我的电脑",
+      "interface": "接口",
+      "usbPort": "USB 端口",
+      "usbDesc": "通用串行总线",
+      "connectedDevice": "已连接设备",
+      "noDevice": "未连接设备",
+      "systemLog": "系统日志"
+    },
+    "locks": {
+      "title": "锁机制与线程安全 (Locks & Safety)",
+      "desc": "演示多线程环境下的竞态条件 (Race Condition)，以及如何使用 synchronized 关键字保证线程安全。",
+      "mode": "模式:",
+      "safe": "同步 (安全)",
+      "unsafe": "无锁 (不安全)",
+      "startSim": "开始模拟 (2 线程 x 10 次自增)",
+      "sharedCount": "共享计数",
+      "thread1": "线程 1",
+      "thread2": "线程 2",
+      "executing": "执行中...",
+      "result": "结果: {{count}} / 20 {{status}}",
+      "dataLoss": "(数据丢失!)",
+      "correct": "(正确)"
+    },
+    "polymorphism": {
+      "title": "继承与多态 (Inheritance & Polymorphism)",
+      "desc": "可视化类继承体系，理解方法重写 (Override) 与动态绑定 (Dynamic Binding) 机制。",
+      "newShape": "> Shape s = new {{type}}();",
+      "errorNull": "> 错误: s 为 null!",
+      "drawCall": "> s.draw(); // 调用 {{type}}.draw()",
+      "btnCircle": "new Circle()",
+      "btnSquare": "new Square()",
+      "btnDraw": "s.draw()",
+      "heap": "堆内存",
+      "noObject": "未实例化对象",
+      "shapeRef": "Shape s",
+      "object": "Object",
+      "commentExample": "// 多态示例",
+      "commentBinding": "// 动态绑定",
+      "console": "控制台输出",
+      "ready": "就绪..."
+    },
+    "staticMembers": {
+      "title": "静态成员 (Static Members)",
+      "desc": "可视化静态变量与静态方法的内存分布，理解类级别成员与对象级别成员的区别。",
+      "maxInstances": "> 演示最多允许 3 个实例",
+      "newCounter": "> Counter c{{id}} = new Counter();",
+      "incInstance": "> c{{id}}.count++; // 实例变量: {{val}}",
+      "incStatic": "> Counter.globalCount++; // 静态变量: {{val}}",
+      "btnNew": "new Counter()",
+      "btnIncStatic": "Counter.globalCount++",
+      "methodArea": "方法区 (静态内存)",
+      "heap": "堆内存 (实例)",
+      "noInstances": "尚未创建实例",
+      "comment": "// 静态成员 vs 实例成员",
+      "console": "控制台输出",
+      "ready": "就绪..."
+    },
+    "threads": {
+      "title": "多线程状态 (Thread States)",
+      "desc": "探索 Java 线程的生命周期，可视化线程在 New, Runnable, Waiting, Blocked, Terminated 等状态之间的转换。",
+      "created": "线程已创建 (NEW)",
+      "start": "t.start() -> RUNNABLE",
+      "wait": "obj.wait() -> WAITING",
+      "notify": "obj.notify() -> RUNNABLE",
+      "sleep": "Thread.sleep(1000) -> TIMED_WAITING",
+      "timeUp": "时间到 -> RUNNABLE",
+      "sync": "进入 synchronized (锁) -> BLOCKED",
+      "acquire": "获取锁 -> RUNNABLE",
+      "finish": "run() 结束 -> TERMINATED",
+      "reset": "线程重置 (NEW)",
+      "btnStart": "start()",
+      "btnWait": "wait()",
+      "btnNotify": "notify()",
+      "btnSleep": "sleep()",
+      "btnBlock": "Block",
+      "btnAcquire": "Acquire",
+      "btnFinish": "Finish",
+      "btnReset": "Reset",
+      "currentState": "当前状态"
+    }
+  },
+  "common": {
+    "loading": "加载中..."
+  }
+}

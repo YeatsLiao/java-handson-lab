@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Plus, Copy, Trash2 } from 'lucide-react';
 import XarrowSrc, { Xwrapper as XwrapperSrc } from 'react-xarrows';
+import { useTranslation } from 'react-i18next';
 
 // Workaround for Vite/CJS interop issue with react-xarrows
 const Xarrow = (XarrowSrc as any).default ?? XarrowSrc;
@@ -20,6 +21,7 @@ interface StackRef {
 }
 
 export const Demo: React.FC = () => {
+  const { t } = useTranslation();
   const [heapObjects, setHeapObjects] = useState<HeapObject[]>([]);
   const [stackRefs, setStackRefs] = useState<StackRef[]>([]);
   
@@ -36,7 +38,7 @@ export const Demo: React.FC = () => {
   // Create new object: User u = new User("...");
   const createObject = () => {
     if (stackRefs.some(r => r.name === varName)) {
-      alert(`变量名 ${varName} 已存在！`);
+      alert(t('labs.references.varExists', { name: varName }));
       return;
     }
 
@@ -90,7 +92,7 @@ export const Demo: React.FC = () => {
       {/* Controls */}
       <div className="bg-white p-4 rounded-xl border border-gray-200 mb-6 space-y-4 shadow-sm">
         <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
-          代码控制台
+          {t('labs.common.codeConsole')}
         </h3>
         <div className="flex flex-wrap items-center gap-4 font-mono text-sm">
           {/* New Object Control */}
@@ -116,7 +118,7 @@ export const Demo: React.FC = () => {
             <button 
               onClick={createObject}
               className="ml-2 bg-blue-600 text-white p-1 rounded hover:bg-blue-700 transition-colors"
-              title="执行代码"
+              title={t('labs.common.execute')}
             >
               <Plus size={16} />
             </button>
@@ -126,7 +128,7 @@ export const Demo: React.FC = () => {
 
           {/* Reference Assignment Control */}
           <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-200">
-             <span className="text-gray-400 text-xs">引用赋值</span>
+             <span className="text-gray-400 text-xs">{t('labs.references.refAssignment')}</span>
              <button 
                onClick={assignReference}
                disabled={stackRefs.length === 0}
@@ -148,8 +150,8 @@ export const Demo: React.FC = () => {
       <Xwrapper>
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[400px]">
           {/* Stack Area */}
-          <div className="col-span-1 bg-gray-50 rounded-2xl border border-gray-200 p-6 flex flex-col relative">
-             <div className="absolute top-4 left-4 text-xs font-bold text-gray-400 tracking-widest">STACK</div>
+          <div className="col-span-1 bg-gray-50 rounded-2xl border border-gray-200 p-6 flex flex-col relative overflow-auto max-h-[600px]">
+             <div className="absolute top-4 left-4 text-xs font-bold text-gray-400 tracking-widest">{t('labs.common.stack')}</div>
              <div className="mt-8 flex flex-col gap-3">
                  {stackRefs.map(ref => (
                    <div 
@@ -166,13 +168,13 @@ export const Demo: React.FC = () => {
                       </div>
                    </div>
                  ))}
-               {stackRefs.length === 0 && <div className="text-center text-gray-300 mt-10">空</div>}
+               {stackRefs.length === 0 && <div className="text-center text-gray-300 mt-10">{t('labs.common.empty')}</div>}
              </div>
           </div>
 
           {/* Heap Area */}
-          <div className="col-span-1 bg-blue-50/50 rounded-2xl border border-blue-100 p-6 relative">
-             <div className="absolute top-4 left-4 text-xs font-bold text-blue-400 tracking-widest">HEAP</div>
+          <div className="col-span-1 bg-blue-50/50 rounded-2xl border border-blue-100 p-6 relative overflow-auto max-h-[600px]">
+             <div className="absolute top-4 left-4 text-xs font-bold text-blue-400 tracking-widest">{t('labs.common.heap')}</div>
              <div className="mt-8 flex flex-wrap gap-4 content-start">
                   {heapObjects.map(obj => (
                     <div 

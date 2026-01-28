@@ -1,13 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LabLayout } from '../../../components/LabLayout/LabLayout';
 import { Guide } from './Guide.tsx';
 import { Demo } from './Demo.tsx';
 
 export const References: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <LabLayout
-      title="引用类型与对象"
-      description="理解 Java 中的引用类型 (Reference Type) 以及对象在堆内存 (Heap) 中的创建过程。"
+      title={t('labs.references.title')}
+      description={t('labs.references.desc')}
       guide={<Guide />}
       demo={<Demo />}
     />

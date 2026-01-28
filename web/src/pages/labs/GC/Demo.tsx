@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2, RefreshCw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface GCObject {
   id: number;
@@ -10,10 +11,11 @@ interface GCObject {
 }
 
 export const Demo: React.FC = () => {
+  const { t } = useTranslation();
   const [objects, setObjects] = useState<GCObject[]>([]);
   const [nextId, setNextId] = useState(1);
   const [survivorTo, setSurvivorTo] = useState<'S0' | 'S1'>('S0'); // Target survivor space
-  const [log, setLog] = useState<string[]>(['Heap initialized']);
+  const [log, setLog] = useState<string[]>([t('labs.gc.heapInit')]);
 
   const addLog = (msg: string) => setLog(prev => [...prev, msg]);
 
@@ -25,7 +27,7 @@ export const Demo: React.FC = () => {
   const allocate = () => {
     const edenObjects = objects.filter(o => o.location === 'Eden');
     if (edenObjects.length >= EDEN_LIMIT) {
-      addLog('❌ Eden 区已满！请执行 Minor GC');
+      addLog(`❌ ${t('labs.gc.edenFull')}`);
       return;
     }
 
@@ -38,7 +40,7 @@ export const Demo: React.FC = () => {
     
     setObjects(prev => [...prev, newObj]);
     setNextId(prev => prev + 1);
-    addLog(`Allocated Object #${newObj.id} in Eden`);
+    addLog(t('labs.gc.allocated', { id: newObj.id }));
   };
 
   const toggleReachability = (id: number) => {
@@ -87,7 +89,12 @@ export const Demo: React.FC = () => {
         return o;
       });
 
-      addLog(`GC Result: ${collectedCount} collected, ${survivedCount} moved to ${targetS}, ${promotedCount} promoted to Old Gen`);
+      addLog(t('labs.gc.gcResult', { 
+        collected: collectedCount, 
+        survived: survivedCount, 
+        target: targetS, 
+        promoted: promotedCount 
+      }));
       return nextObjects;
     });
 
@@ -97,7 +104,7 @@ export const Demo: React.FC = () => {
 
   const clear = () => {
     setObjects([]);
-    setLog(['Heap cleared']);
+    setLog([t('labs.gc.heapCleared')]);
     setNextId(1);
     setSurvivorTo('S0');
   };
@@ -142,11 +149,11 @@ export const Demo: React.FC = () => {
     <div className="flex flex-col h-full space-y-6">
       <div className="flex flex-wrap gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
         <button onClick={allocate} className="btn-primary bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded flex items-center gap-2">
-          <Plus size={18} /> Allocate Object
+          <Plus size={18} /> {t('labs.gc.allocate')}
         </button>
         
         <button onClick={runMinorGC} className="btn-primary bg-orange-500 text-white hover:bg-orange-600 px-4 py-2 rounded flex items-center gap-2">
-          <RefreshCw size={18} /> Minor GC
+          <RefreshCw size={18} /> {t('labs.gc.minorGC')}
         </button>
 
         <button onClick={clear} className="ml-auto text-gray-500 hover:text-gray-700">
@@ -154,22 +161,22 @@ export const Demo: React.FC = () => {
         </button>
       </div>
 
-      <div className="flex-1 bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-4">
+      <div className="flex-1 bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-4 overflow-auto">
         {/* Young Gen */}
         <div className="flex flex-col gap-2">
-           <div className="text-xs font-bold uppercase text-gray-400">Young Generation</div>
+           <div className="text-xs font-bold uppercase text-gray-400">{t('labs.gc.youngGen')}</div>
            <div className="flex flex-col md:flex-row gap-4">
-              {renderZone('Eden Space', 'Eden', EDEN_LIMIT, 'bg-green-50 border-green-200')}
-              {renderZone('Survivor 0', 'S0', SURVIVOR_LIMIT, survivorTo === 'S1' ? 'bg-green-50 border-green-200' : 'bg-gray-100 border-gray-200 opacity-60')}
-              {renderZone('Survivor 1', 'S1', SURVIVOR_LIMIT, survivorTo === 'S0' ? 'bg-green-50 border-green-200' : 'bg-gray-100 border-gray-200 opacity-60')}
+              {renderZone(t('labs.gc.eden'), 'Eden', EDEN_LIMIT, 'bg-green-50 border-green-200')}
+              {renderZone(t('labs.gc.s0'), 'S0', SURVIVOR_LIMIT, survivorTo === 'S1' ? 'bg-green-50 border-green-200' : 'bg-gray-100 border-gray-200 opacity-60')}
+              {renderZone(t('labs.gc.s1'), 'S1', SURVIVOR_LIMIT, survivorTo === 'S0' ? 'bg-green-50 border-green-200' : 'bg-gray-100 border-gray-200 opacity-60')}
            </div>
         </div>
 
         {/* Old Gen */}
         <div className="flex flex-col gap-2 flex-1">
-           <div className="text-xs font-bold uppercase text-gray-400">Old Generation</div>
+           <div className="text-xs font-bold uppercase text-gray-400">{t('labs.gc.oldGen')}</div>
            <div className="flex flex-col md:flex-row gap-4 h-full">
-              {renderZone('Tenured Space', 'Old', 20, 'bg-blue-50 border-blue-200')}
+              {renderZone(t('labs.gc.tenured'), 'Old', 20, 'bg-blue-50 border-blue-200')}
            </div>
         </div>
       </div>

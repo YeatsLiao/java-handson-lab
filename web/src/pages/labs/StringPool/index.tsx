@@ -1,13 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LabLayout } from '../../../components/LabLayout/LabLayout';
 import { Guide } from './Guide.tsx';
 import { Demo } from './Demo.tsx';
 
 export const StringPool: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <LabLayout
-      title="字符串常量池 (String Pool)"
-      description="深入理解 Java 字符串的不可变性以及字符串常量池的内存优化机制。"
+      title={t('labs.stringPool.title')}
+      description={t('labs.stringPool.desc')}
       guide={<Guide />}
       demo={<Demo />}
     />
