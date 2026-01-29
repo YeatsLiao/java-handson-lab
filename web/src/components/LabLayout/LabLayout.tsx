@@ -19,31 +19,31 @@ export const LabLayout: React.FC<LabLayoutProps> = ({
   return (
     <div className="h-[calc(100vh-4rem)] flex flex-col">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
-        {description && <p className="text-gray-600 mt-2">{description}</p>}
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{title}</h1>
+        {description && <p className="text-gray-600 dark:text-gray-300 mt-2">{description}</p>}
       </div>
 
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-0">
         {/* Left: Guide Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-y-auto flex flex-col h-[500px] lg:h-full">
-          <div className="p-4 border-b border-gray-100 bg-gray-50/50 sticky top-0 z-10 backdrop-blur-sm">
-            <h2 className="font-semibold text-gray-700 flex items-center gap-2">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-y-auto flex flex-col h-[500px] lg:h-full">
+          <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50 sticky top-0 z-10 backdrop-blur-sm">
+            <h2 className="font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
               📖 {t('labs.common.guide')}
             </h2>
           </div>
-          <div className="p-6 prose prose-blue max-w-none">
+          <div className="p-6 prose prose-blue dark:prose-invert max-w-none">
             {guide}
           </div>
         </div>
 
         {/* Right: Demo Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-[600px] lg:h-full order-first lg:order-last">
-          <div className="p-4 border-b border-gray-100 bg-gray-50/50 sticky top-0 z-10 backdrop-blur-sm flex justify-between items-center">
-            <h2 className="font-semibold text-gray-700 flex items-center gap-2">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-[600px] lg:h-full order-first lg:order-last">
+          <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50 sticky top-0 z-10 backdrop-blur-sm flex justify-between items-center">
+            <h2 className="font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
               🧪 {t('labs.common.lab')}
             </h2>
           </div>
-          <div className="flex-1 overflow-y-auto p-3 md:p-6 bg-slate-50 relative">
+          <div className="flex-1 overflow-y-auto p-3 md:p-6 bg-slate-50 dark:bg-slate-900 relative">
             {demo}
           </div>
         </div>

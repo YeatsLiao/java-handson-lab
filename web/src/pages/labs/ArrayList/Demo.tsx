@@ -57,7 +57,7 @@ export const Demo: React.FC = () => {
         <button
           onClick={clear}
           disabled={isResizing}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
         >
           <Trash2 size={20} />
           {t('labs.arrayList.btn_reset')}
@@ -65,8 +65,8 @@ export const Demo: React.FC = () => {
       </div>
 
       {/* Visualization Area */}
-      <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm min-h-[200px] flex flex-col justify-center">
-        <div className="mb-4 flex justify-between text-sm text-gray-500">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm min-h-[200px] flex flex-col justify-center">
+        <div className="mb-4 flex justify-between text-sm text-gray-500 dark:text-gray-400">
           <span>Size: {elements.length}</span>
           <span>Capacity: {capacity}</span>
         </div>
@@ -74,7 +74,7 @@ export const Demo: React.FC = () => {
         <div className="relative">
           {/* Array Container */}
           <div 
-            className="flex border-2 border-gray-300 rounded-lg overflow-hidden transition-all duration-500"
+            className="flex border-2 border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden transition-all duration-500"
             style={{ width: `${Math.min(capacity * 60, 100)}%`, maxWidth: '100%' }}
           >
             {/* Slots */}
@@ -83,8 +83,8 @@ export const Demo: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className={`flex-1 h-16 border-r border-gray-200 last:border-r-0 flex items-center justify-center text-lg font-bold transition-colors duration-300 ${
-                    hasElement ? 'bg-blue-50 text-blue-600' : 'bg-gray-50 text-gray-300'
+                  className={`flex-1 h-16 border-r border-gray-200 dark:border-gray-700 last:border-r-0 flex items-center justify-center text-lg font-bold transition-colors duration-300 ${
+                    hasElement ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300' : 'bg-gray-50 dark:bg-gray-700/50 text-gray-300 dark:text-gray-500'
                   }`}
                 >
                   <AnimatePresence mode="popLayout">
@@ -117,7 +117,7 @@ export const Demo: React.FC = () => {
       </div>
 
       {/* Logs */}
-      <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm text-green-400 h-48 overflow-y-auto">
+      <div className="bg-gray-900 dark:bg-black/50 rounded-lg p-4 font-mono text-sm text-green-400 dark:text-green-300 h-48 overflow-y-auto">
         <div className="space-y-1">
           {log.map((entry, i) => (
             <div key={i}>&gt; {entry}</div>

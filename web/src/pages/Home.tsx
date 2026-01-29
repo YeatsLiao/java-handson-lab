@@ -16,10 +16,10 @@ export const Home: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-5xl font-extrabold text-gray-900 tracking-tight sm:text-6xl mb-4">
-            {t('home.hero.title_prefix')} <span className="text-blue-600">{t('home.hero.title_highlight')}</span> {t('home.hero.title_suffix')}
+          <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-6xl mb-4">
+            {t('home.hero.title_prefix')} <span className="text-blue-600 dark:text-blue-400">{t('home.hero.title_highlight')}</span> {t('home.hero.title_suffix')}
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
             {t('home.hero.subtitle')}
           </p>
         </motion.div>
@@ -32,7 +32,7 @@ export const Home: React.FC = () => {
         >
           <Link 
             to="/labs/primitive-types" 
-            className="px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 flex items-center gap-2"
+            className="px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-800/20 flex items-center gap-2"
           >
             {t('home.hero.start')} <ArrowRight size={18} />
           </Link>
@@ -40,7 +40,7 @@ export const Home: React.FC = () => {
             href="https://github.com/YeatsLiao/java-handson-lab" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-8 py-3 bg-white text-gray-700 border border-gray-200 rounded-full font-semibold hover:bg-gray-50 transition-colors"
+            className="px-8 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 rounded-full font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           >
             {t('home.hero.source')}
           </a>
@@ -67,22 +67,22 @@ export const Home: React.FC = () => {
       </div>
 
       {/* Quick Start Links */}
-      <div className="border-t border-gray-100 pt-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">{t('home.sections.title')}</h2>
+      <div className="border-t border-gray-100 dark:border-gray-800 pt-12">
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-10 text-center">{t('home.sections.title')}</h2>
         
         <div className="space-y-10">
           {/* 阶段一：基础 */}
           <section>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-1 h-6 bg-blue-500 rounded-full"></span>
-              <h3 className="text-xl font-bold text-gray-700">{t('sidebar.categories.basics')}</h3>
+              <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200">{t('sidebar.categories.basics')}</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <QuickLink to="/labs/primitive-types" label={t('sidebar.items.primitiveTypes')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-              <QuickLink to="/labs/references" label={t('sidebar.items.references')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-              <QuickLink to="/labs/stack" label={t('sidebar.items.stack')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-              <QuickLink to="/labs/string-pool" label={t('sidebar.items.stringPool')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
-              <QuickLink to="/labs/flow-control" label={t('sidebar.items.flowControl')} color="bg-blue-50 text-blue-700 hover:bg-blue-100" />
+              <QuickLink to="/labs/primitive-types" label={t('sidebar.items.primitiveTypes')} color="bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900" />
+              <QuickLink to="/labs/references" label={t('sidebar.items.references')} color="bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900" />
+              <QuickLink to="/labs/stack" label={t('sidebar.items.stack')} color="bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900" />
+              <QuickLink to="/labs/string-pool" label={t('sidebar.items.stringPool')} color="bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900" />
+              <QuickLink to="/labs/flow-control" label={t('sidebar.items.flowControl')} color="bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900" />
             </div>
           </section>
 
@@ -90,12 +90,12 @@ export const Home: React.FC = () => {
           <section>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-1 h-6 bg-indigo-500 rounded-full"></span>
-              <h3 className="text-xl font-bold text-gray-700">{t('sidebar.categories.oop')}</h3>
+              <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200">{t('sidebar.categories.oop')}</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <QuickLink to="/labs/polymorphism" label={t('sidebar.items.polymorphism')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
-              <QuickLink to="/labs/interfaces" label={t('sidebar.items.interfaces')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
-              <QuickLink to="/labs/static-members" label={t('sidebar.items.staticMembers')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100" />
+              <QuickLink to="/labs/polymorphism" label={t('sidebar.items.polymorphism')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/50 dark:text-indigo-300 dark:hover:bg-indigo-900" />
+              <QuickLink to="/labs/interfaces" label={t('sidebar.items.interfaces')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/50 dark:text-indigo-300 dark:hover:bg-indigo-900" />
+              <QuickLink to="/labs/static-members" label={t('sidebar.items.staticMembers')} color="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/50 dark:text-indigo-300 dark:hover:bg-indigo-900" />
             </div>
           </section>
 
@@ -103,12 +103,12 @@ export const Home: React.FC = () => {
           <section>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-1 h-6 bg-emerald-500 rounded-full"></span>
-              <h3 className="text-xl font-bold text-gray-700">{t('sidebar.categories.collections')}</h3>
+              <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200">{t('sidebar.categories.collections')}</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <QuickLink to="/labs/arraylist" label={t('sidebar.items.arrayList')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
-              <QuickLink to="/labs/linkedlist" label={t('sidebar.items.linkedList')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
-              <QuickLink to="/labs/hashmap" label={t('sidebar.items.hashMap')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100" />
+              <QuickLink to="/labs/arraylist" label={t('sidebar.items.arrayList')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 dark:hover:bg-emerald-900" />
+              <QuickLink to="/labs/linkedlist" label={t('sidebar.items.linkedList')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 dark:hover:bg-emerald-900" />
+              <QuickLink to="/labs/hashmap" label={t('sidebar.items.hashMap')} color="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 dark:hover:bg-emerald-900" />
             </div>
           </section>
 
@@ -116,7 +116,7 @@ export const Home: React.FC = () => {
           <section>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-1 h-6 bg-orange-500 rounded-full"></span>
-              <h3 className="text-xl font-bold text-gray-700">{t('sidebar.categories.advanced')}</h3>
+              <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200">{t('sidebar.categories.advanced')}</h3>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <QuickLink to="/labs/exceptions" label={t('sidebar.items.exceptions')} color="bg-orange-50 text-orange-700 hover:bg-orange-100" />
@@ -132,12 +132,12 @@ export const Home: React.FC = () => {
 };
 
 const FeatureCard = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
-  <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-    <div className="mb-4 bg-gray-50 w-12 h-12 rounded-xl flex items-center justify-center">
+  <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+    <div className="mb-4 bg-gray-50 dark:bg-gray-700 w-12 h-12 rounded-xl flex items-center justify-center">
       {icon}
     </div>
-    <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-    <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{desc}</p>
   </div>
 );
 
