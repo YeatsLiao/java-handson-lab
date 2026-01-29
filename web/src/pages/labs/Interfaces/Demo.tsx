@@ -42,16 +42,16 @@ export const Demo: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-50 overflow-y-auto">
+    <div className="flex flex-col h-full bg-slate-50 dark:bg-gray-900 overflow-y-auto">
       {/* 1. Control Panel (Sticky Top) */}
-      <div className="sticky top-0 z-10 bg-white border-b border-slate-200 shadow-sm p-3">
+      <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-slate-200 dark:border-gray-700 shadow-sm p-3">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="font-bold text-slate-700 text-sm">{t('labs.interfaces.title')}</h3>
+          <h3 className="font-bold text-slate-700 dark:text-gray-200 text-sm">{t('labs.interfaces.title')}</h3>
           <button 
             onClick={disconnect}
             disabled={!device}
             className={`px-3 py-1 rounded text-xs font-bold flex items-center gap-1 transition-colors
-              ${device ? 'bg-red-100 text-red-600 border border-red-200' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}
+              ${device ? 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800' : 'bg-slate-100 dark:bg-gray-700 text-slate-400 dark:text-gray-500 cursor-not-allowed'}
             `}
           >
             <Power size={14} /> {t('labs.interfaces.eject')}
@@ -66,8 +66,8 @@ export const Demo: React.FC = () => {
               className={`
                 flex flex-col items-center justify-center gap-1 p-2 rounded-lg border-2 transition-all
                 ${device === type 
-                  ? 'bg-blue-50 border-blue-500 text-blue-700 shadow-sm' 
-                  : 'bg-white border-slate-200 text-slate-600 hover:border-blue-300'}
+                  ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-500 dark:border-blue-400 text-blue-700 dark:text-blue-300 shadow-sm' 
+                  : 'bg-white dark:bg-gray-800 border-slate-200 dark:border-gray-700 text-slate-600 dark:text-gray-400 hover:border-blue-300 dark:hover:border-blue-500'}
               `}
             >
               <DeviceIcon type={type} size={20} />
@@ -93,19 +93,19 @@ export const Demo: React.FC = () => {
         </div>
 
         {/* Connection Line */}
-        <ArrowDown className="text-slate-300" size={24} />
+        <ArrowDown className="text-slate-300 dark:text-gray-600" size={24} />
 
         {/* Interface Block */}
-        <div className="w-full bg-white border-2 border-dashed border-slate-300 rounded-xl p-4 flex items-center gap-4 relative overflow-hidden">
-          <div className="absolute top-0 left-0 bg-slate-100 text-[10px] text-slate-500 px-2 py-0.5 rounded-br">
+        <div className="w-full bg-white dark:bg-gray-800 border-2 border-dashed border-slate-300 dark:border-gray-600 rounded-xl p-4 flex items-center gap-4 relative overflow-hidden">
+          <div className="absolute top-0 left-0 bg-slate-100 dark:bg-gray-700 text-[10px] text-slate-500 dark:text-gray-400 px-2 py-0.5 rounded-br">
             {t('labs.interfaces.interface')}
           </div>
-          <div className="p-3 bg-blue-50 rounded-lg text-blue-500 mt-2">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-blue-500 mt-2">
             <Usb size={24} />
           </div>
           <div className="flex-1 mt-2">
-            <div className="font-bold text-slate-700 text-sm">{t('labs.interfaces.usbPort')}</div>
-            <div className="text-xs text-slate-500">{t('labs.interfaces.usbDesc')}</div>
+            <div className="font-bold text-slate-700 dark:text-gray-200 text-sm">{t('labs.interfaces.usbPort')}</div>
+            <div className="text-xs text-slate-500 dark:text-gray-400">{t('labs.interfaces.usbDesc')}</div>
           </div>
         </div>
 
@@ -117,7 +117,7 @@ export const Demo: React.FC = () => {
             scale: device ? 1 : 0.8
           }} 
         >
-          <ArrowDown className={device ? "text-blue-500" : "text-slate-200"} size={24} />
+          <ArrowDown className={device ? "text-blue-500" : "text-slate-200 dark:text-gray-700"} size={24} />
         </motion.div>
 
         {/* Device Block (Dynamic) */}
@@ -140,7 +140,7 @@ export const Demo: React.FC = () => {
               <div className="p-1 bg-green-400 rounded-full" />
             </motion.div>
           ) : (
-            <div className="w-full h-20 border-2 border-slate-100 rounded-xl flex items-center justify-center text-slate-300 text-sm italic">
+            <div className="w-full h-20 border-2 border-slate-100 dark:border-gray-800 rounded-xl flex items-center justify-center text-slate-300 dark:text-gray-700 text-sm italic">
               {t('labs.interfaces.noDevice')}
             </div>
           )}

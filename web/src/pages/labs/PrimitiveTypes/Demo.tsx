@@ -11,11 +11,11 @@ interface StackVar {
 }
 
 const COLORS: Record<string, string> = {
-  int: 'bg-blue-100 border-blue-200 text-blue-800',
-  double: 'bg-green-100 border-green-200 text-green-800',
-  boolean: 'bg-purple-100 border-purple-200 text-purple-800',
-  char: 'bg-orange-100 border-orange-200 text-orange-800',
-  long: 'bg-indigo-100 border-indigo-200 text-indigo-800',
+  int: 'bg-blue-100 dark:bg-blue-900/30 border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300',
+  double: 'bg-green-100 dark:bg-green-900/30 border-green-200 dark:border-green-800 text-green-800 dark:text-green-300',
+  boolean: 'bg-purple-100 dark:bg-purple-900/30 border-purple-200 dark:border-purple-800 text-purple-800 dark:text-purple-300',
+  char: 'bg-orange-100 dark:bg-orange-900/30 border-orange-200 dark:border-orange-800 text-orange-800 dark:text-orange-300',
+  long: 'bg-indigo-100 dark:bg-indigo-900/30 border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300',
 };
 
 export const Demo: React.FC = () => {
@@ -39,7 +39,7 @@ export const Demo: React.FC = () => {
       type: selectedType,
       name: varName,
       value: varValue,
-      color: COLORS[selectedType] || 'bg-gray-100',
+      color: COLORS[selectedType] || 'bg-gray-100 dark:bg-gray-700',
     };
 
     setVariables(prev => [newVar, ...prev]); // Add to top (Stack push simulation)
@@ -56,17 +56,17 @@ export const Demo: React.FC = () => {
   return (
     <div className="h-full flex flex-col">
       {/* Controls */}
-      <div className="bg-white p-4 rounded-xl border border-gray-200 mb-6 space-y-4 shadow-sm">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-200 dark:border-gray-700 mb-6 space-y-4 shadow-sm">
+        <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
           {t('labs.common.codeConsole')}
         </h3>
         <div className="flex flex-wrap items-end gap-3 font-mono text-sm">
           <div className="flex flex-col gap-1">
-            <label className="text-xs text-gray-400">{t('labs.demo.type')}</label>
+            <label className="text-xs text-gray-400 dark:text-gray-500">{t('labs.demo.type')}</label>
             <select 
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
+              className="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
             >
               {Object.keys(COLORS).map(t => <option key={t} value={t}>{t}</option>)}
             </select>
@@ -74,12 +74,12 @@ export const Demo: React.FC = () => {
           
           <div className="flex items-end gap-2 flex-wrap">
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-gray-400">{t('labs.demo.name')}</label>
+              <label className="text-xs text-gray-400 dark:text-gray-500">{t('labs.demo.name')}</label>
               <input 
                 type="text" 
                 value={varName}
                 onChange={(e) => setVarName(e.target.value)}
-                className="w-20 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
+                className="w-20 px-3 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
                 placeholder="x"
               />
             </div>
@@ -87,12 +87,12 @@ export const Demo: React.FC = () => {
             <div className="pb-3 text-gray-400 font-bold">=</div>
 
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-gray-400">{t('labs.demo.value')}</label>
+              <label className="text-xs text-gray-400 dark:text-gray-500">{t('labs.demo.value')}</label>
               <input 
                 type="text" 
                 value={varValue}
                 onChange={(e) => setVarValue(e.target.value)}
-                className="w-24 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
+                className="w-24 px-3 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-shadow"
                 placeholder="10"
               />
             </div>
@@ -109,7 +109,7 @@ export const Demo: React.FC = () => {
 
           <button 
             onClick={clearStack}
-            className="ml-auto px-3 py-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+            className="ml-auto px-3 py-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors"
             title={t('labs.demo.clear')}
           >
             <Trash2 size={18} />
@@ -118,8 +118,8 @@ export const Demo: React.FC = () => {
       </div>
 
       {/* Visualization Area */}
-      <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-200 p-8 flex justify-center items-end overflow-hidden relative">
-        <div className="absolute top-4 left-4 text-gray-400 font-bold text-sm tracking-widest">
+      <div className="flex-1 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 flex justify-center items-end overflow-hidden relative">
+        <div className="absolute top-4 left-4 text-gray-400 dark:text-gray-500 font-bold text-sm tracking-widest">
           {t('labs.common.stack')} (LIFO)
         </div>
 
@@ -133,14 +133,14 @@ export const Demo: React.FC = () => {
                   <span className="font-mono font-bold">{v.type}</span>
                   <span className="font-mono">{v.name}</span>
                 </div>
-                <div className="font-mono font-bold bg-white/50 px-2 py-1 rounded">
+                <div className="font-mono font-bold bg-white/50 dark:bg-black/20 px-2 py-1 rounded">
                   {v.value}
                 </div>
               </div>
             ))}
           
           {variables.length === 0 && (
-            <div className="text-center text-gray-300 py-12 border-2 border-dashed border-gray-200 rounded-xl">
+            <div className="text-center text-gray-300 dark:text-gray-600 py-12 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl">
               {t('labs.common.empty')}
             </div>
           )}

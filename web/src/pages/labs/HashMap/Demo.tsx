@@ -74,24 +74,24 @@ export const Demo: React.FC = () => {
   return (
     <div className="flex flex-col h-full space-y-6">
       {/* Input Area */}
-      <div className="flex flex-wrap gap-4 items-end bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <div className="flex flex-wrap gap-4 items-end bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
         <div>
-          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">{t('labs.hashMap.key')}</label>
+          <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">{t('labs.hashMap.key')}</label>
           <input
             type="text"
             value={inputKey}
             onChange={e => setInputKey(e.target.value)}
-            className="px-3 py-2 border rounded w-32 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-3 py-2 border rounded w-32 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
             placeholder="e.g. apple"
           />
         </div>
         <div>
-          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">{t('labs.hashMap.value')}</label>
+          <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">{t('labs.hashMap.value')}</label>
           <input
             type="text"
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
-            className="px-3 py-2 border rounded w-32 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-3 py-2 border rounded w-32 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
             placeholder="e.g. 100"
           />
         </div>
@@ -104,7 +104,7 @@ export const Demo: React.FC = () => {
         </button>
         <button
           onClick={clear}
-          className="ml-auto px-4 py-2 text-gray-500 hover:text-gray-700"
+          className="ml-auto px-4 py-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           title={t('labs.hashMap.reset')}
         >
         
@@ -113,17 +113,17 @@ export const Demo: React.FC = () => {
       </div>
 
       {/* Visualization Area */}
-      <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex-1 overflow-y-auto">
+      <div className="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex-1 overflow-y-auto">
         <div className="space-y-4">
           {buckets.map((bucket, i) => (
             <div key={i} className="flex items-center">
               {/* Bucket Index */}
-              <div className="w-16 h-12 bg-gray-100 border border-gray-300 flex items-center justify-center font-mono font-bold text-gray-500 rounded-l">
+              <div className="w-16 h-12 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 flex items-center justify-center font-mono font-bold text-gray-500 dark:text-gray-400 rounded-l">
                 [{i}]
               </div>
               
               {/* Chain */}
-              <div className="flex-1 flex items-center p-2 border-t border-b border-r border-gray-100 min-h-[3rem] overflow-x-auto gap-2 bg-gray-50/50 rounded-r">
+              <div className="flex-1 flex items-center p-2 border-t border-b border-r border-gray-100 dark:border-gray-700 min-h-[3rem] overflow-x-auto gap-2 bg-gray-50/50 dark:bg-gray-800/50 rounded-r">
                 <AnimatePresence>
                   {bucket.map((entry, idx) => (
                     <motion.div
@@ -133,19 +133,19 @@ export const Demo: React.FC = () => {
                       className="flex items-center"
                     >
                       {/* Entry Box */}
-                      <div className="px-3 py-2 bg-purple-100 border border-purple-300 rounded text-sm shadow-sm">
-                        <span className="font-bold text-purple-700">{entry.key}</span>
-                        <span className="mx-1 text-purple-400">=</span>
-                        <span className="text-purple-900">{entry.value}</span>
+                      <div className="px-3 py-2 bg-purple-100 dark:bg-purple-900/30 border border-purple-300 dark:border-purple-700 rounded text-sm shadow-sm">
+                        <span className="font-bold text-purple-700 dark:text-purple-300">{entry.key}</span>
+                        <span className="mx-1 text-purple-400 dark:text-purple-500">=</span>
+                        <span className="text-purple-900 dark:text-purple-200">{entry.value}</span>
                       </div>
                       
                       {/* Arrow if not last */}
                       {idx < bucket.length - 1 && (
-                        <div className="mx-1 text-gray-400">→</div>
+                        <div className="mx-1 text-gray-400 dark:text-gray-600">→</div>
                       )}
                     </motion.div>
                   ))}
-                  {bucket.length === 0 && <span className="text-gray-300 text-xs italic ml-2">null</span>}
+                  {bucket.length === 0 && <span className="text-gray-300 dark:text-gray-600 text-xs italic ml-2">null</span>}
                 </AnimatePresence>
               </div>
             </div>

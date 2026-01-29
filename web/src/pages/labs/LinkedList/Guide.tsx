@@ -4,19 +4,19 @@ import { useTranslation } from 'react-i18next';
 const GuideZh: React.FC = () => (
   <div className="space-y-6">
     <section>
-      <h3 className="text-xl font-bold text-gray-800 mb-3">LinkedList 内部原理</h3>
-      <p className="text-gray-600 mb-4">
+      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">LinkedList 内部原理</h3>
+      <p className="text-gray-600 dark:text-gray-400 mb-4">
         <code>LinkedList</code> 是基于<strong>双向链表</strong>实现的集合。
         与 ArrayList 不同，它的元素在内存中不是连续存储的，而是通过引用（指针）相互连接。
       </p>
     </section>
 
     <section>
-      <h3 className="text-xl font-bold text-gray-800 mb-3">Node 结构</h3>
-      <p className="text-gray-600 mb-4">
+      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">Node 结构</h3>
+      <p className="text-gray-600 dark:text-gray-400 mb-4">
         链表中的每个元素都被封装在一个 <code>Node</code> 对象中，每个 Node 包含三个部分：
       </p>
-      <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4">
+      <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2 mb-4">
         <li><strong>item:</strong> 实际存储的数据元素。</li>
         <li><strong>next:</strong> 指向链表中下一个节点的引用。</li>
         <li><strong>prev:</strong> 指向链表中前一个节点的引用。</li>
@@ -24,37 +24,37 @@ const GuideZh: React.FC = () => (
     </section>
 
     <section>
-      <h3 className="text-xl font-bold text-gray-800 mb-3">特点对比</h3>
-      <table className="min-w-full text-sm text-left text-gray-600 border border-gray-200 rounded-lg">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">特点对比</h3>
+      <table className="min-w-full text-sm text-left text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 rounded-lg">
+        <thead className="text-xs text-gray-700 dark:text-gray-200 uppercase bg-gray-50 dark:bg-gray-800">
           <tr>
-            <th className="px-6 py-3 border-b">操作</th>
-            <th className="px-6 py-3 border-b">ArrayList</th>
-            <th className="px-6 py-3 border-b">LinkedList</th>
+            <th className="px-6 py-3 border-b dark:border-gray-700">操作</th>
+            <th className="px-6 py-3 border-b dark:border-gray-700">ArrayList</th>
+            <th className="px-6 py-3 border-b dark:border-gray-700">LinkedList</th>
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b">
-            <td className="px-6 py-4 font-medium text-gray-900">随机访问 (get)</td>
-            <td className="px-6 py-4">O(1) - 极快</td>
-            <td className="px-6 py-4">O(n) - 需遍历</td>
+          <tr className="bg-white dark:bg-gray-900 border-b dark:border-gray-700">
+            <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">随机访问 (get)</td>
+            <td className="px-6 py-4 text-green-600 dark:text-green-400">O(1)</td>
+            <td className="px-6 py-4 text-red-600 dark:text-red-400">O(n)</td>
           </tr>
-          <tr className="bg-gray-50 border-b">
-            <td className="px-6 py-4 font-medium text-gray-900">头部插入/删除</td>
-            <td className="px-6 py-4">O(n) - 需移动元素</td>
-            <td className="px-6 py-4">O(1) - 仅修改引用</td>
+          <tr className="bg-white dark:bg-gray-900 border-b dark:border-gray-700">
+            <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">头部插入/删除</td>
+            <td className="px-6 py-4 text-red-600 dark:text-red-400">O(n)</td>
+            <td className="px-6 py-4 text-green-600 dark:text-green-400">O(1)</td>
           </tr>
-          <tr className="bg-white">
-            <td className="px-6 py-4 font-medium text-gray-900">内存占用</td>
-            <td className="px-6 py-4">低 (仅数组)</td>
-            <td className="px-6 py-4">高 (每个元素需 Node 对象)</td>
+          <tr className="bg-white dark:bg-gray-900">
+            <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">尾部插入/删除</td>
+            <td className="px-6 py-4 text-green-600 dark:text-green-400">O(1)</td>
+            <td className="px-6 py-4 text-green-600 dark:text-green-400">O(1)</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h3 className="text-xl font-bold text-gray-800 mb-3">代码示例</h3>
+      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">代码示例</h3>
       <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto border border-gray-700">
         <pre>{`private static class Node<E> {
     E item;
@@ -125,7 +125,7 @@ const GuideEn: React.FC = () => (
     </section>
 
     <section>
-      <h3 className="text-xl font-bold text-gray-800 mb-3">Code Example</h3>
+      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">Code Example</h3>
       <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto border border-gray-700">
         <pre>{`private static class Node<E> {
     E item;

@@ -115,9 +115,9 @@ export const Demo: React.FC = () => {
 
     return (
       <div className={`flex-1 border-2 rounded-lg p-2 flex flex-col ${colorClass} min-h-[160px]`}>
-        <div className="flex justify-between items-center mb-2 border-b border-black/10 pb-1">
-          <span className="font-bold text-sm">{name}</span>
-          <span className="text-xs font-mono">{zoneObjects.length}/{limit} ({usage}%)</span>
+        <div className="flex justify-between items-center mb-2 border-b border-black/10 dark:border-white/10 pb-1">
+          <span className="font-bold text-sm text-gray-800 dark:text-gray-200">{name}</span>
+          <span className="text-xs font-mono text-gray-600 dark:text-gray-400">{zoneObjects.length}/{limit} ({usage}%)</span>
         </div>
         <div className="flex-1 flex flex-wrap content-start gap-2">
           <AnimatePresence>
@@ -131,8 +131,8 @@ export const Demo: React.FC = () => {
                 onClick={() => toggleReachability(obj.id)}
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer transition-colors border-2 shadow-sm ${
                   obj.isAlive 
-                    ? 'bg-white border-blue-500 text-blue-600 hover:bg-red-50 hover:border-red-500 hover:text-red-500' 
-                    : 'bg-gray-300 border-gray-400 text-gray-500 decoration-line-through'
+                    ? 'bg-white border-blue-500 text-blue-600 hover:bg-red-50 hover:border-red-500 hover:text-red-500 dark:bg-gray-800 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-red-900/30 dark:hover:border-red-400 dark:hover:text-red-400' 
+                    : 'bg-gray-300 border-gray-400 text-gray-500 decoration-line-through dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400'
                 }`}
                 title={`ID: ${obj.id}, Age: ${obj.age}\nClick to toggle reachability`}
               >
@@ -147,7 +147,7 @@ export const Demo: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full space-y-6">
-      <div className="flex flex-wrap gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+      <div className="flex flex-wrap gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
         <button onClick={allocate} className="btn-primary bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded flex items-center gap-2">
           <Plus size={18} /> {t('labs.gc.allocate')}
         </button>
@@ -156,27 +156,27 @@ export const Demo: React.FC = () => {
           <RefreshCw size={18} /> {t('labs.gc.minorGC')}
         </button>
 
-        <button onClick={clear} className="ml-auto text-gray-500 hover:text-gray-700">
+        <button onClick={clear} className="ml-auto text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
           <Trash2 size={20} />
         </button>
       </div>
 
-      <div className="flex-1 bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-4 overflow-auto">
+      <div className="flex-1 bg-white dark:bg-gray-900 p-4 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col gap-4 overflow-auto">
         {/* Young Gen */}
         <div className="flex flex-col gap-2">
-           <div className="text-xs font-bold uppercase text-gray-400">{t('labs.gc.youngGen')}</div>
+           <div className="text-xs font-bold uppercase text-gray-400 dark:text-gray-500">{t('labs.gc.youngGen')}</div>
            <div className="flex flex-col md:flex-row gap-4">
-              {renderZone(t('labs.gc.eden'), 'Eden', EDEN_LIMIT, 'bg-green-50 border-green-200')}
-              {renderZone(t('labs.gc.s0'), 'S0', SURVIVOR_LIMIT, survivorTo === 'S1' ? 'bg-green-50 border-green-200' : 'bg-gray-100 border-gray-200 opacity-60')}
-              {renderZone(t('labs.gc.s1'), 'S1', SURVIVOR_LIMIT, survivorTo === 'S0' ? 'bg-green-50 border-green-200' : 'bg-gray-100 border-gray-200 opacity-60')}
+              {renderZone(t('labs.gc.eden'), 'Eden', EDEN_LIMIT, 'bg-green-50 border-green-200 dark:bg-green-900/30 dark:border-green-800')}
+              {renderZone(t('labs.gc.s0'), 'S0', SURVIVOR_LIMIT, survivorTo === 'S1' ? 'bg-green-50 border-green-200 dark:bg-green-900/30 dark:border-green-800' : 'bg-gray-100 border-gray-200 opacity-60 dark:bg-gray-800 dark:border-gray-700')}
+              {renderZone(t('labs.gc.s1'), 'S1', SURVIVOR_LIMIT, survivorTo === 'S0' ? 'bg-green-50 border-green-200 dark:bg-green-900/30 dark:border-green-800' : 'bg-gray-100 border-gray-200 opacity-60 dark:bg-gray-800 dark:border-gray-700')}
            </div>
         </div>
 
         {/* Old Gen */}
         <div className="flex flex-col gap-2 flex-1">
-           <div className="text-xs font-bold uppercase text-gray-400">{t('labs.gc.oldGen')}</div>
+           <div className="text-xs font-bold uppercase text-gray-400 dark:text-gray-500">{t('labs.gc.oldGen')}</div>
            <div className="flex flex-col md:flex-row gap-4 h-full">
-              {renderZone(t('labs.gc.tenured'), 'Old', 20, 'bg-blue-50 border-blue-200')}
+              {renderZone(t('labs.gc.tenured'), 'Old', 20, 'bg-blue-50 border-blue-200 dark:bg-blue-900/30 dark:border-blue-800')}
            </div>
         </div>
       </div>

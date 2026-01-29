@@ -62,7 +62,7 @@ export const Demo: React.FC = () => {
 
   const getBlockStyle = (block: 'try' | 'catch' | 'finally') => {
     // Default style
-    let style = "border-slate-200 bg-white opacity-50 grayscale";
+    let style = "border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-800 opacity-50 grayscale";
     
     // Active style
     if (
@@ -70,7 +70,7 @@ export const Demo: React.FC = () => {
       (block === 'catch' && (currentStep === 'catch' || currentStep === 'exception')) ||
       (block === 'finally' && currentStep === 'finally')
     ) {
-      style = "border-blue-500 bg-blue-50 opacity-100 ring-2 ring-blue-200 shadow-md transform scale-[1.02]";
+      style = "border-blue-500 bg-blue-50 dark:bg-blue-900/30 opacity-100 ring-2 ring-blue-200 dark:ring-blue-800 shadow-md transform scale-[1.02]";
     }
     
     // Completed style
@@ -80,25 +80,25 @@ export const Demo: React.FC = () => {
       (block === 'finally' && currentStep === 'end');
 
     if (isCompleted) {
-      style = "border-green-500 bg-green-50 opacity-100";
+      style = "border-green-500 bg-green-50 dark:bg-green-900/30 opacity-100";
     }
 
     // Skipped style (specifically for catch)
     if (block === 'catch' && !hasException && (currentStep === 'finally' || currentStep === 'end')) {
-       style = "border-slate-200 bg-slate-50 opacity-30 border-dashed";
+       style = "border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800 opacity-30 border-dashed";
     }
 
     return style;
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-50 overflow-hidden">
+    <div className="flex flex-col h-full bg-slate-50 dark:bg-gray-900 overflow-hidden">
       {/* 1. Controls (Sticky Top) */}
-      <div className="bg-white border-b border-slate-200 p-3 shadow-sm z-10 flex items-center justify-between shrink-0">
+      <div className="bg-white dark:bg-gray-800 border-b border-slate-200 dark:border-gray-700 p-3 shadow-sm z-10 flex items-center justify-between shrink-0">
         <button
           onClick={() => { setHasException(!hasException); setCurrentStep('start'); setLogs([t('labs.exceptions.ready')]); }}
           className={`text-xs font-bold px-3 py-1.5 rounded-lg border flex items-center gap-2 transition-colors ${
-            hasException ? 'bg-red-50 text-red-600 border-red-200' : 'bg-green-50 text-green-600 border-green-200'
+            hasException ? 'bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 border-red-200 dark:border-red-800' : 'bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 border-green-200 dark:border-green-800'
           }`}
         >
           {hasException ? t('labs.exceptions.willFail') : t('labs.exceptions.willPass')}
@@ -119,10 +119,10 @@ export const Demo: React.FC = () => {
         {/* TRY BLOCK */}
         <div className={`transition-all duration-300 rounded-xl border-2 p-4 ${getBlockStyle('try')}`}>
           <div className="flex items-center justify-between mb-2">
-            <span className="font-bold text-sm uppercase tracking-wider">Try Block</span>
-            {getBlockStyle('try').includes('bg-green-50') && <Check size={16} className="text-green-600" />}
+            <span className="font-bold text-sm uppercase tracking-wider dark:text-gray-300">Try Block</span>
+            {getBlockStyle('try').includes('bg-green-50') && <Check size={16} className="text-green-600 dark:text-green-400" />}
           </div>
-          <code className="block bg-black/5 p-2 rounded text-xs font-mono text-slate-700">
+          <code className="block bg-black/5 dark:bg-black/30 p-2 rounded text-xs font-mono text-slate-700 dark:text-slate-300">
             int result = 10 / {hasException ? '0' : '2'};
           </code>
         </div>
@@ -134,13 +134,13 @@ export const Demo: React.FC = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="bg-red-100 border-l-4 border-red-500 p-3 rounded-r-lg"
+              className="bg-red-100 dark:bg-red-900/30 border-l-4 border-red-500 p-3 rounded-r-lg"
             >
-              <div className="flex items-center gap-2 text-red-700 font-bold text-sm">
+              <div className="flex items-center gap-2 text-red-700 dark:text-red-400 font-bold text-sm">
                 <AlertTriangle size={16} />
                 <span>ArithmeticException Thrown!</span>
               </div>
-              <div className="text-xs text-red-600 mt-1 pl-6">
+              <div className="text-xs text-red-600 dark:text-red-300 mt-1 pl-6">
                 Division by zero detected. Jumping to Catch...
               </div>
             </motion.div>
@@ -148,31 +148,31 @@ export const Demo: React.FC = () => {
         </AnimatePresence>
 
         <div className="flex justify-center">
-          <ArrowDown size={20} className="text-slate-300" />
+          <ArrowDown size={20} className="text-slate-300 dark:text-slate-600" />
         </div>
 
         {/* CATCH BLOCK */}
         <div className={`transition-all duration-300 rounded-xl border-2 p-4 ${getBlockStyle('catch')}`}>
           <div className="flex items-center justify-between mb-2">
-            <span className="font-bold text-sm uppercase tracking-wider">Catch Block</span>
-            {getBlockStyle('catch').includes('bg-green-50') && <Check size={16} className="text-green-600" />}
+            <span className="font-bold text-sm uppercase tracking-wider dark:text-gray-300">Catch Block</span>
+            {getBlockStyle('catch').includes('bg-green-50') && <Check size={16} className="text-green-600 dark:text-green-400" />}
           </div>
-          <code className="block bg-black/5 p-2 rounded text-xs font-mono text-slate-700">
+          <code className="block bg-black/5 dark:bg-black/30 p-2 rounded text-xs font-mono text-slate-700 dark:text-slate-300">
             System.err.println(e);
           </code>
         </div>
 
         <div className="flex justify-center">
-          <ArrowDown size={20} className="text-slate-300" />
+          <ArrowDown size={20} className="text-slate-300 dark:text-slate-600" />
         </div>
 
         {/* FINALLY BLOCK */}
         <div className={`transition-all duration-300 rounded-xl border-2 p-4 ${getBlockStyle('finally')}`}>
            <div className="flex items-center justify-between mb-2">
-            <span className="font-bold text-sm uppercase tracking-wider">Finally Block</span>
-            {getBlockStyle('finally').includes('bg-green-50') && <Check size={16} className="text-green-600" />}
+            <span className="font-bold text-sm uppercase tracking-wider dark:text-gray-300">Finally Block</span>
+            {getBlockStyle('finally').includes('bg-green-50') && <Check size={16} className="text-green-600 dark:text-green-400" />}
           </div>
-          <code className="block bg-black/5 p-2 rounded text-xs font-mono text-slate-700">
+          <code className="block bg-black/5 dark:bg-black/30 p-2 rounded text-xs font-mono text-slate-700 dark:text-slate-300">
             resource.close();
           </code>
         </div>

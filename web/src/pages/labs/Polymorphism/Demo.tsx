@@ -38,34 +38,34 @@ export const Demo: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-6 p-6">
-      <div className="flex flex-wrap gap-4 items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+      <div className="flex flex-wrap gap-4 items-center bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
         <button
           onClick={() => createShape('circle')}
-          className="flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors font-medium"
+          className="flex items-center gap-2 px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-800/50 transition-colors font-medium"
         >
           <Circle size={18} /> {t('labs.polymorphism.btnCircle')}
         </button>
         <button
           onClick={() => createShape('square')}
-          className="flex items-center gap-2 px-4 py-2 bg-indigo-100 text-indigo-700 rounded-lg hover:bg-indigo-200 transition-colors font-medium"
+          className="flex items-center gap-2 px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 rounded-lg hover:bg-indigo-200 dark:hover:bg-indigo-800/50 transition-colors font-medium"
         >
           <SquareIcon size={18} /> {t('labs.polymorphism.btnSquare')}
         </button>
-        <div className="w-px h-8 bg-gray-300 mx-2"></div>
+        <div className="w-px h-8 bg-gray-300 dark:bg-gray-600 mx-2"></div>
         <button
           onClick={callDraw}
           disabled={!shape}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors font-medium ${
             shape 
               ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md' 
-              : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              : 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
           }`}
         >
           <Play size={18} /> {t('labs.polymorphism.btnDraw')}
         </button>
         <button
           onClick={reset}
-          className="ml-auto p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors"
+          className="ml-auto p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
           title={t('labs.common.reset')}
         >
           <RefreshCw size={20} />
@@ -74,8 +74,8 @@ export const Demo: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Visualization Area */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 min-h-[300px] flex flex-col items-center justify-center relative overflow-hidden">
-          <div className="absolute top-4 left-4 text-sm font-semibold text-gray-500">{t('labs.polymorphism.heap')}</div>
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 min-h-[300px] flex flex-col items-center justify-center relative overflow-hidden">
+          <div className="absolute top-4 left-4 text-sm font-semibold text-gray-500 dark:text-gray-400">{t('labs.polymorphism.heap')}</div>
           
           <AnimatePresence mode="wait">
             {shape ? (
@@ -93,7 +93,7 @@ export const Demo: React.FC = () => {
                   {shape === 'circle' ? 'Circle' : 'Square'}
                 </div>
                 <motion.div
-                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm text-gray-500 font-mono bg-gray-100 px-2 py-1 rounded"
+                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm text-gray-500 dark:text-gray-400 font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -102,7 +102,7 @@ export const Demo: React.FC = () => {
                 </motion.div>
               </motion.div>
             ) : (
-              <div className="text-gray-400 text-center">
+              <div className="text-gray-400 dark:text-gray-500 text-center">
                 <div className="mb-2">null</div>
                 <div className="text-sm">{t('labs.polymorphism.noObject')}</div>
               </div>
@@ -111,11 +111,11 @@ export const Demo: React.FC = () => {
 
           {/* Reference Line */}
           <div className="absolute left-8 bottom-8 flex items-center gap-2 font-mono text-sm">
-            <div className="bg-yellow-100 px-2 py-1 rounded border border-yellow-200 text-yellow-800">
+            <div className="bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 rounded border border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-400">
               {t('labs.polymorphism.shapeRef')}
             </div>
-            <div className="text-gray-400">──➤</div>
-            <div className={`px-2 py-1 rounded border ${shape ? 'bg-green-100 border-green-200 text-green-800' : 'bg-gray-100 border-gray-200 text-gray-500'}`}>
+            <div className="text-gray-400 dark:text-gray-500">──➤</div>
+            <div className={`px-2 py-1 rounded border ${shape ? 'bg-green-100 dark:bg-green-900/30 border-green-200 dark:border-green-800 text-green-800 dark:text-green-400' : 'bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400'}`}>
               {shape ? t('labs.polymorphism.object') : 'null'}
             </div>
           </div>

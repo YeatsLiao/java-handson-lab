@@ -93,14 +93,14 @@ export const Demo: React.FC = () => {
 
   return (
     <div className="h-full flex flex-col gap-6">
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex items-center gap-4">
-        <div className="font-mono text-sm bg-gray-50 px-3 py-2 rounded-lg border border-gray-200">
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center gap-4">
+        <div className="font-mono text-sm bg-gray-50 dark:bg-gray-900 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200">
           for (int i = 0; i &lt; 
           <input 
             type="number" 
             value={limit}
             onChange={e => setLimit(Math.max(1, parseInt(e.target.value)||1))}
-            className="w-12 mx-2 px-1 border rounded text-center bg-white"
+            className="w-12 mx-2 px-1 border rounded text-center bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200"
             disabled={isPlaying}
           />
           ; i++)
@@ -114,7 +114,7 @@ export const Demo: React.FC = () => {
         </button>
         <button
           onClick={handleReset}
-          className="ml-auto text-gray-400 hover:text-red-500 p-2 rounded-lg hover:bg-red-50 transition-colors"
+          className="ml-auto text-gray-400 hover:text-red-500 p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors"
           title={t('labs.flowControl.reset')}
         >
           <RotateCcw size={18}/>
@@ -160,18 +160,18 @@ export const Demo: React.FC = () => {
         </div>
 
         {/* Console Log */}
-        <div className="bg-white border border-gray-200 rounded-xl flex flex-col shadow-sm overflow-hidden">
-           <div className="bg-gray-50 px-4 py-2 border-b border-gray-200 flex justify-between items-center">
-             <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider">{t('labs.flowControl.console')}</h4>
-             <span className="text-xs text-gray-400">{t('labs.flowControl.lines', { count: logs.length })}</span>
+        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl flex flex-col shadow-sm overflow-hidden">
+           <div className="bg-gray-50 dark:bg-gray-900 px-4 py-2 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+             <h4 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{t('labs.flowControl.console')}</h4>
+             <span className="text-xs text-gray-400 dark:text-gray-500">{t('labs.flowControl.lines', { count: logs.length })}</span>
            </div>
            <div className="flex-1 p-4 font-mono text-xs overflow-y-auto max-h-[400px] space-y-1">
               {logs.map((log, idx) => (
                 <div 
                    key={idx} 
-                   className="border-b border-gray-50 pb-1 last:border-0 text-gray-600 animate-in fade-in slide-in-from-left-2 duration-300"
+                   className="border-b border-gray-50 dark:border-gray-700 pb-1 last:border-0 text-gray-600 dark:text-gray-300 animate-in fade-in slide-in-from-left-2 duration-300"
                 >
-                  <span className="text-gray-300 mr-3 select-none">{(idx + 1).toString().padStart(2, '0')}</span>
+                  <span className="text-gray-300 dark:text-gray-600 mr-3 select-none">{(idx + 1).toString().padStart(2, '0')}</span>
                   {log}
                 </div>
               ))}

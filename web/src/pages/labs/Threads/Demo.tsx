@@ -71,19 +71,19 @@ export const Demo: React.FC = () => {
 
   const getStateColor = (s: ThreadState) => {
     switch (s) {
-      case 'NEW': return 'bg-gray-100 text-gray-600 border-gray-300';
-      case 'RUNNABLE': return 'bg-green-100 text-green-700 border-green-400 shadow-green-200';
-      case 'BLOCKED': return 'bg-red-100 text-red-700 border-red-300';
-      case 'WAITING': return 'bg-orange-100 text-orange-700 border-orange-300';
-      case 'TIMED_WAITING': return 'bg-yellow-100 text-yellow-700 border-yellow-300';
-      case 'TERMINATED': return 'bg-gray-800 text-gray-300 border-gray-600';
+      case 'NEW': return 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-600';
+      case 'RUNNABLE': return 'bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 border-green-400 dark:border-green-600 shadow-green-200 dark:shadow-none';
+      case 'BLOCKED': return 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 border-red-300 dark:border-red-600';
+      case 'WAITING': return 'bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 border-orange-300 dark:border-orange-600';
+      case 'TIMED_WAITING': return 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300 border-yellow-300 dark:border-yellow-600';
+      case 'TERMINATED': return 'bg-gray-800 dark:bg-gray-700 text-gray-300 dark:text-gray-200 border-gray-600 dark:border-gray-500';
     }
   };
 
   return (
     <div className="flex flex-col h-full space-y-6">
       {/* Controls */}
-      <div className="flex flex-wrap gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+      <div className="flex flex-wrap gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
         <button onClick={transitions.start} disabled={state !== 'NEW'} className="btn-control bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-30 disabled:cursor-not-allowed px-3 py-1.5 rounded flex items-center gap-1">
           <Play size={16} /> start()
         </button>
@@ -112,13 +112,13 @@ export const Demo: React.FC = () => {
           <Power size={16} /> Finish
         </button>
 
-        <button onClick={transitions.reset} className="ml-auto px-3 py-1.5 text-gray-500 hover:text-gray-700 border border-gray-300 rounded">
+        <button onClick={transitions.reset} className="ml-auto px-3 py-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 border border-gray-300 dark:border-gray-600 rounded">
           Reset
         </button>
       </div>
 
       {/* Visualization */}
-      <div className="flex-1 bg-white p-4 md:p-8 rounded-xl border border-gray-200 shadow-sm flex items-center justify-center relative overflow-auto">
+      <div className="flex-1 bg-white dark:bg-gray-900 p-4 md:p-8 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex items-center justify-center relative overflow-auto">
         <div className="relative w-full max-w-2xl h-80">
           
           {/* Central State Display */}
@@ -135,10 +135,9 @@ export const Demo: React.FC = () => {
           </div>
 
           {/* Background Connections (Simplified for visual effect) */}
-          <svg className="absolute inset-0 w-full h-full text-gray-200 pointer-events-none" style={{ zIndex: 0 }}>
+          <svg className="absolute inset-0 w-full h-full text-gray-200 dark:text-gray-800 pointer-events-none" style={{ zIndex: 0 }}>
              <circle cx="50%" cy="50%" r="40%" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
           </svg>
-
         </div>
       </div>
 

@@ -108,16 +108,27 @@ export const Demo: React.FC = () => {
     setFrames([]);
   };
 
+  const getFrameStyles = (status: 'active' | 'waiting' | 'returning') => {
+    switch (status) {
+      case 'active':
+        return 'border-blue-500 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/30';
+      case 'returning':
+        return 'border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/30';
+      default:
+        return 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800';
+    }
+  };
+
   return (
     <div className="h-full flex flex-col">
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6 flex items-center gap-4">
-        <div className="flex items-center gap-2">
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6 flex items-center gap-4">
+        <div className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
           <span className="font-mono">factorial(</span>
           <input 
             type="number" 
             value={n}
             onChange={(e) => setN(Math.min(5, Math.max(1, parseInt(e.target.value) || 1)))}
-            className="w-12 px-2 py-1 border rounded text-center"
+            className="w-12 px-2 py-1 border rounded text-center bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600"
             disabled={isRunning}
           />
           <span className="font-mono">)</span>
@@ -134,50 +145,46 @@ export const Demo: React.FC = () => {
         <button
           onClick={handleReset}
           disabled={isRunning}
-          className="ml-auto p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
+          className="ml-auto p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors"
           title={t('labs.stack.reset')}
         >
           <RotateCcw size={18} />
         </button>
       </div>
 
-      <div className="flex-1 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 p-4 md:p-8 flex flex-col-reverse items-center gap-2 overflow-y-auto min-h-[400px] relative">
-        <div className="w-full text-center text-gray-300 font-mono text-sm border-t border-gray-200 pt-2">{t('labs.stack.bottom')}</div>
+      <div className="flex-1 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-900 p-4 md:p-8 flex flex-col-reverse items-center gap-2 overflow-y-auto min-h-[400px] relative">
+        <div className="w-full text-center text-gray-300 dark:text-gray-600 font-mono text-sm border-t border-gray-200 dark:border-gray-700 pt-2">{t('labs.stack.bottom')}</div>
         
           {frames.map((frame, index) => (
             <div
               key={frame.id}
-              className={`w-full max-w-[16rem] md:w-64 p-4 rounded-lg border-2 shadow-sm transition-all duration-300 relative animate-in slide-in-from-bottom-4`}
-              style={{
-                borderColor: frame.status === 'active' ? '#3B82F6' : '#E5E7EB',
-                backgroundColor: frame.status === 'returning' ? '#ECFDF5' : (frame.status === 'active' ? '#EFF6FF' : '#F9FAFB')
-              }}
+              className={`w-full max-w-[16rem] md:w-64 p-4 rounded-lg border-2 shadow-sm transition-all duration-300 relative animate-in slide-in-from-bottom-4 ${getFrameStyles(frame.status)}`}
             >
               <div className="mb-1 md:absolute md:-left-12 md:top-1/2 md:-translate-y-1/2 text-xs font-mono text-gray-400 md:mb-0">
                 {t('labs.stack.frame', { index: frames.length - index })}
               </div>
               
-              <div className="font-bold text-gray-800">{frame.methodName}</div>
-              <div className="text-sm font-mono text-blue-600 mt-1">{frame.args}</div>
+              <div className="font-bold text-gray-800 dark:text-gray-200">{frame.methodName}</div>
+              <div className="text-sm font-mono text-blue-600 dark:text-blue-400 mt-1">{frame.args}</div>
               
               {frame.returnVal !== undefined && (
                 <div 
-                  className="mt-2 pt-2 border-t border-gray-200 text-sm font-mono text-green-600 font-bold animate-in fade-in"
+                  className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700 text-sm font-mono text-green-600 dark:text-green-400 font-bold animate-in fade-in"
                 >
                   return {frame.returnVal};
                 </div>
               )}
               
               {frame.status === 'waiting' && (
-                <div className="absolute inset-0 bg-gray-100/50 flex items-center justify-center rounded-lg backdrop-blur-[1px]">
-                  <span className="text-xs text-gray-500 font-mono bg-white px-2 py-1 rounded border shadow-sm">{t('labs.stack.waiting')}</span>
+                <div className="absolute inset-0 bg-gray-100/50 dark:bg-gray-900/50 flex items-center justify-center rounded-lg backdrop-blur-[1px]">
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-mono bg-white dark:bg-gray-800 px-2 py-1 rounded border dark:border-gray-600 shadow-sm">{t('labs.stack.waiting')}</span>
                 </div>
               )}
             </div>
           ))}
 
         {frames.length === 0 && !isRunning && (
-            <div className="absolute inset-0 flex items-center justify-center text-gray-300 pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center text-gray-300 dark:text-gray-600 pointer-events-none">
                 {t('labs.stack.empty')}
             </div>
         )}
